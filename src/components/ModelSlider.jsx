@@ -12,31 +12,26 @@ import bluePacifica from '../assets/bluepacifica.png';
 const vehicles = [
   {
     image: whiteRam,
-    label: 'Truck',
     model: '2025 Ram 1500',
     price: 'Lease From $689/mo',
   },
   {
     image: whiteJeep,
-    label: 'Off-Road',
     model: '2025 Jeep Wrangler',
     price: 'Lease From $659/mo',
   },
   {
     image: redCharger,
-    label: 'Performance Sedan',
     model: '2025 Dodge Charger',
     price: 'Lease From $539/mo',
   },
   {
     image: blueCherokee,
-    label: 'SUV',
     model: '2025 Jeep Grand Cherokee',
     price: 'Lease From $499/mo',
   },
   {
     image: bluePacifica,
-    label: 'Minivan',
     model: '2025 Chrysler Pacifica',
     price: 'Lease From $475/mo',
   },

@@ -113,7 +113,7 @@
     color: #ccc;
     margin-top: 1rem;
     display: block;
-    text-align: right;
+    text-align: left;
     animation: hint-bounce 1.6s infinite;
   }
   
