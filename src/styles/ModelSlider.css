@@ -107,6 +107,22 @@
   .need-financing:hover {
     background-color: #e0e0e0;
   }
+
+  .swipe-hint {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 1rem;
+    display: block;
+    text-align: right;
+    animation: hint-bounce 1.6s infinite;
+  }
+  
+  @keyframes hint-bounce {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+  }
+  
   
   @media (max-width: 768px) {
     .model-slider {

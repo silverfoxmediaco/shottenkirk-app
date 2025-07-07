@@ -58,6 +58,7 @@ const ModelSlider = () => {
                 <button className="buy-now">Buy Now</button>
                 <button className="need-financing">Test Drive</button>
               </div>
+              <span className="swipe-hint">Swipe for more &rarr;</span>
             </div>
           </div>
         ))}

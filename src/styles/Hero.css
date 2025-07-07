@@ -64,13 +64,13 @@
       width: auto;
       padding-top: 0;
       background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url('../assets/mobicdjrlinup.png');
-    display: flex;
-    align-items: flex-start; 
-    justify-content: center;
-    background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../assets/mobicdjrlinup.png');
+      display: flex;
+      align-items: flex-start; 
+      justify-content: center;
+      background-attachment: fixed;
     }
   
     .hero-overlay {
