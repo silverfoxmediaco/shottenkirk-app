@@ -1,0 +1,32 @@
+/* Reset #root and remove demo styles */
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  overflow-x: hidden;
+}
+
+/* Remove Vite boilerplate classes */
+.logo,
+.logo:hover,
+.logo.react:hover,
+.card,
+.read-the-docs {
+  all: unset;
+}
+
+/* Optional default container class (if needed in layout) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Optional typography defaults */
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.2;
+}
