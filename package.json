@@ -4,7 +4,6 @@
   "scripts": {
     "install": "cd client && npm install && cd ../server && npm install",
     "build": "cd client && npm install && npm run build",
-
     "start": "cd server && npm start"
   },
   "devDependencies": {
