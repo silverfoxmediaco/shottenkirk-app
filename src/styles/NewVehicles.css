@@ -1,0 +1,333 @@
+/* src/styles/NewVehicles.css */
+
+.inventory-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .inventory-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .inventory-header h1 {
+    font-size: 2.5rem;
+    color: #1e1e1e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .inventory-count {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  /* Loading State */
+  .inventory-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #1976d2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Filters Section */
+  .inventory-filters {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  .filter-group input:focus,
+  .filter-group select:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+  
+  .clear-filters {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+  
+  .clear-filters:hover {
+    background: #c82333;
+  }
+  
+  /* Vehicle Grid */
+  .inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Vehicle Card */
+  .vehicle-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .vehicle-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .vehicle-image {
+    position: relative;
+    height: 250px;
+    background: #f5f5f5;
+    overflow: hidden;
+  }
+  
+  .vehicle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .stock-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  
+  .vehicle-info {
+    padding: 1.5rem;
+  }
+  
+  .vehicle-info h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    color: #1e1e1e;
+  }
+  
+  .vehicle-details {
+    margin-bottom: 1rem;
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .detail-row .label {
+    color: #666;
+  }
+  
+  .detail-row .value {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .detail-row .vin {
+    font-family: monospace;
+    font-size: 0.85rem;
+  }
+  
+  /* Pricing Section */
+  .pricing-section {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .price-item {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .price-item.featured {
+    background: #f0f8ff;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .price-label {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+  }
+  
+  .price {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .price.msrp {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 1.25rem;
+  }
+  
+  .price.sale-price {
+    color: #1976d2;
+  }
+  
+  /* Incentives */
+  .incentives {
+    background: #fff3cd;
+    color: #856404;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .incentive-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* Action Buttons */
+  .vehicle-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #1976d2;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #155bb5;
+  }
+  
+  .btn-secondary {
+    background: white;
+    color: #1976d2;
+    border: 2px solid #1976d2;
+  }
+  
+  .btn-secondary:hover {
+    background: #1976d2;
+    color: white;
+  }
+  
+  /* No Results */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+  }
+  
+  .no-results p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .no-results button {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .inventory-filters {
+      flex-direction: column;
+    }
+    
+    .filter-group {
+      width: 100%;
+    }
+    
+    .clear-filters {
+      width: 100%;
+    }
+    
+    .inventory-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .vehicle-actions {
+      flex-direction: column;
+    }
+    
+    .inventory-header h1 {
+      font-size: 2rem;
+    }
+  }
