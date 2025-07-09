@@ -3,7 +3,7 @@ services:
     name: shottenkirk-fullstack
     runtime: node
     repo: https://github.com/silverfoxmediaco/shottenkirk-app
-    buildCommand: cd client && npm install --force && cd ../server && npm install && cd ../client && npm run build
+    buildCommand: chmod +x build.sh && ./build.sh
     startCommand: cd server && npm start
     envVars:
       - key: NODE_VERSION
