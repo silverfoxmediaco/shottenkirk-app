@@ -2,15 +2,14 @@
   "name": "shottenkirk-fullstack",
   "version": "1.0.0",
   "scripts": {
-    "install": "cd client && npm install && cd ../server && npm install",
-    "build": "cd client && npm install && npm run build",
-    "start": "cd server && npm start"
+    "install": "npm install --prefix client && npm install --prefix server",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "start": "npm start --prefix server"
   },
   "devDependencies": {
     "vite": "^6.3.5"
   },
   "engines": {
-  "node": "20.x"
-}
-
+    "node": "20.x"
+  }
 }
