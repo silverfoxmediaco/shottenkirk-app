@@ -20,7 +20,8 @@ const TestDriveModal = ({ isOpen, onClose, vehicle }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/test-drive', {
+      // Use relative URL for API call
+      const response = await fetch('/api/test-drive', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

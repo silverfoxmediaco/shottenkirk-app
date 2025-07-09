@@ -22,7 +22,8 @@ const NewVehicles = () => {
 
   const fetchVehicles = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/inventory');
+      // Use relative URL for API call - proxy will handle in dev, direct in prod
+      const response = await fetch('/api/inventory');
       const data = await response.json();
       setVehicles(data);
       setFilteredVehicles(data);

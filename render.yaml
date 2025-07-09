@@ -1,18 +1,24 @@
 services:
   - type: web
     name: shottenkirk-fullstack
-    env: node
-    rootDir: .
-    buildCommand: npm run build
+    runtime: node
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO # Update this
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
       - key: PORT
         value: 5050
       - key: MONGO_URI
-        value: your-mongodb-uri
+        sync: false
       - key: EMAIL_USER
-        value: your-email@example.com
+        sync: false
       - key: EMAIL_PASS
-        value: your-app-password-or-token
+        sync: false
       - key: EMAIL_TO
-        value: your-recipient@example.com
+        sync: false
+      - key: CLIENT_URL
+        sync: false
