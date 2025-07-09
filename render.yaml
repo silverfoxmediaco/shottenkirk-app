@@ -2,12 +2,12 @@ services:
   - type: web
     name: shottenkirk-fullstack
     runtime: node
-    repo: https://github.com/YOUR_USERNAME/YOUR_REPO # Update this
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    repo: https://github.com/silverfoxmediaco/shottenkirk-app
+    buildCommand: cd client && npm install --force && cd ../server && npm install && cd ../client && npm run build
+    startCommand: cd server && npm start
     envVars:
       - key: NODE_VERSION
-        value: 20
+        value: 18
       - key: NODE_ENV
         value: production
       - key: PORT
