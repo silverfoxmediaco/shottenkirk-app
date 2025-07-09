@@ -16,30 +16,37 @@ dotenv.config({ path: join(__dirname, '.env') });
 const app = express();
 const PORT = process.env.PORT || 5050;
 
-// CORS setup - allow both local and production URLs
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'http://localhost:5175',
-  'http://localhost:5176',
-  process.env.CLIENT_URL // Add your Render frontend URL here
-].filter(Boolean);
-
-app.use(cors({
+// Simple CORS setup for production
+const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
+    // In production, the frontend is served from the same domain
+    // so we can allow the Render domain
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:5174', 
+      'http://localhost:5175',
+      'http://localhost:5176',
+      'https://shottenkirk-app.onrender.com',
+      process.env.CLIENT_URL
+    ].filter(Boolean);
+    
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      // Log the origin that's being blocked for debugging
+      console.log('Blocked by CORS:', origin);
+      callback(null, false); // Don't throw error, just deny
     }
   },
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 
 // Middleware
 app.use(express.json());
@@ -50,7 +57,6 @@ app.use('/api/inventory', inventoryRoutes);
 
 // Serve frontend static files in production
 if (process.env.NODE_ENV === 'production') {
-  // Correct path to client dist folder
   const clientDistPath = join(__dirname, '..', 'client', 'dist');
   
   app.use(express.static(clientDistPath));
