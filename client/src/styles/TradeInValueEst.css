@@ -34,7 +34,7 @@
   
   .progress-fill {
     height: 100%;
-    background-color: #c8102e;
+    background-color: #003366;
     transition: width 0.3s ease;
   }
   
@@ -58,7 +58,7 @@
     color: #1a1a1a;
     margin-bottom: 30px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #c8102e;
+    border-bottom: 2px solid #003366;
     display: inline-block;
   }
   
@@ -108,8 +108,8 @@
   .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: #c8102e;
-    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+    border-color: #003366;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
   }
   
   .form-group input.error,
@@ -149,7 +149,7 @@
   }
   
   .radio-option:hover {
-    border-color: #c8102e;
+    border-color: #003366;
     background-color: #f8f9fa;
   }
   
@@ -172,8 +172,8 @@
   }
   
   .radio-option:has(input:checked) {
-    border-color: #c8102e;
-    background-color: #fff5f5;
+    border-color: #003366;
+    background-color: #e6f0ff;
   }
   
   /* Radio Inline */
@@ -204,7 +204,7 @@
   }
   
   .checkbox-option:hover {
-    border-color: #c8102e;
+    border-color: #003366;
     background-color: #f8f9fa;
   }
   
@@ -216,8 +216,8 @@
   }
   
   .checkbox-option:has(input:checked) {
-    border-color: #c8102e;
-    background-color: #fff5f5;
+    border-color: #003366;
+    background-color: #e6f0ff;
   }
   
   /* Form Navigation */
@@ -253,16 +253,16 @@
   
   .next-button,
   .submit-button {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     margin-left: auto;
   }
   
   .next-button:hover,
   .submit-button:hover:not(:disabled) {
-    background-color: #a00d24;
+    background-color: #001f3f;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
   }
   
   .submit-button:disabled {
@@ -388,7 +388,7 @@
   }
   
   .value-item.average .amount {
-    color: #c8102e;
+    color: #003366;
     font-size: 2.5rem;
   }
   
@@ -458,24 +458,24 @@
   }
   
   .primary-button {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
   }
   
   .primary-button:hover {
-    background-color: #a00d24;
+    background-color: #001f3f;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
   }
   
   .secondary-button {
     background-color: transparent;
-    color: #c8102e;
-    border: 2px solid #c8102e;
+    color: #003366;
+    border: 2px solid #003366;
   }
   
   .secondary-button:hover {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
   }
   

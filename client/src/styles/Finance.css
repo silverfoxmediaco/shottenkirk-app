@@ -50,7 +50,7 @@
   }
   
   .cta-button {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -64,9 +64,9 @@
   }
   
   .cta-button:hover {
-    background-color: #a00d24;
+    background-color: #001f3f;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
   }
   
   /* Navigation Tabs */
@@ -106,13 +106,13 @@
   }
   
   .nav-tab:hover {
-    color: #c8102e;
+    color: #003366;
     background-color: #f8f9fa;
   }
   
   .nav-tab.active {
-    color: #c8102e;
-    border-bottom-color: #c8102e;
+    color: #003366;
+    border-bottom-color: #003366;
     background-color: #f8f9fa;
   }
   
@@ -217,7 +217,7 @@
     content: '✓';
     position: absolute;
     left: 0;
-    color: #c8102e;
+    color: #003366;
     font-weight: bold;
     font-size: 1.2rem;
   }
@@ -253,7 +253,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     padding: 15px 30px;
     text-decoration: none;
@@ -263,7 +263,7 @@
   }
   
   .contact-btn:hover {
-    background-color: #a00d24;
+    background-color: #001f3f;
     transform: translateY(-2px);
   }
   

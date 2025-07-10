@@ -55,13 +55,13 @@
   }
   
   .filter-group select:hover {
-    border-color: #c8102e;
+    border-color: #003366;
   }
   
   .filter-group select:focus {
     outline: none;
-    border-color: #c8102e;
-    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+    border-color: #003366;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
   }
   
   /* Offers Grid */
@@ -88,14 +88,14 @@
   }
   
   .offer-card.featured {
-    border: 2px solid #c8102e;
+    border: 2px solid #003366;
   }
   
   .featured-badge {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     padding: 5px 15px;
     font-size: 0.85rem;
@@ -116,7 +116,7 @@
   .offer-icon {
     width: 60px;
     height: 60px;
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -154,7 +154,7 @@
   
   .offer-headline {
     font-size: 1.5rem;
-    color: #c8102e;
+    color: #003366;
     margin-bottom: 10px;
     font-weight: 700;
   }
@@ -227,7 +227,7 @@
   }
   
   .view-inventory-btn {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -239,7 +239,7 @@
   }
   
   .view-inventory-btn:hover {
-    background-color: #a00d24;
+    background-color: #001f3f;
     transform: translateY(-2px);
   }
   
@@ -259,7 +259,7 @@
   }
   
   .no-offers button {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
     padding: 12px 30px;
     border: none;
@@ -271,7 +271,7 @@
   }
   
   .no-offers button:hover {
-    background-color: #a00d24;
+    background-color: #001f3f;
   }
   
   /* Disclaimer Section */
@@ -342,14 +342,14 @@
   }
   
   .primary-cta {
-    background-color: #c8102e;
+    background-color: #003366;
     color: white;
   }
   
   .primary-cta:hover {
-    background-color: #a00d24;
+    background-color: #001f3f;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
   }
   
   .secondary-cta {
