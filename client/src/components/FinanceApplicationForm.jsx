@@ -1,9 +1,11 @@
 // client/src/components/FinanceApplicationForm.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/FinanceApplicationForm.css';
 
 const FinanceApplicationForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     // Personal Information
     firstName: '',
@@ -55,6 +57,16 @@ const FinanceApplicationForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  
+  // Check if coming from BuyNowModal
+  const [buyNowReturn, setBuyNowReturn] = useState(false);
+  
+  useEffect(() => {
+    const buyNowState = sessionStorage.getItem('buyNowState');
+    if (buyNowState) {
+      setBuyNowReturn(true);
+    }
+  }, []);
 
   const states = [
     'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
@@ -155,47 +167,65 @@ const FinanceApplicationForm = () => {
       // Here you would normally send the data to your backend
       console.log('Form submitted:', formData);
       
-      setShowSuccess(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        setFormData({
-          firstName: '',
-          middleInitial: '',
-          lastName: '',
-          suffix: '',
-          email: '',
-          phone: '',
-          dateOfBirth: '',
-          ssn: '',
-          streetAddress: '',
-          apartment: '',
-          city: '',
-          state: '',
-          zipCode: '',
-          yearsAtAddress: '',
-          monthsAtAddress: '',
-          rentOrOwn: '',
-          monthlyPayment: '',
-          employerName: '',
-          employerPhone: '',
-          jobTitle: '',
-          yearsEmployed: '',
-          monthsEmployed: '',
-          monthlyIncome: '',
-          incomeType: 'salary',
-          additionalIncomeSource: '',
-          additionalIncomeAmount: '',
-          vehicleInterest: '',
-          tradeIn: 'no',
-          downPayment: '',
-          hasCoApplicant: 'no',
-          agreeTerms: false,
-          agreeContact: false
-        });
-        setShowSuccess(false);
-      }, 5000);
+      // If coming from BuyNowModal, store approval data and redirect back
+      if (buyNowReturn) {
+        const approvalData = {
+          approved: true,
+          apr: 4.9, // This would come from your actual credit check
+          maxLoanAmount: parseInt(formData.monthlyIncome) * 15,
+          monthlyIncome: formData.monthlyIncome,
+          creditScore: 720 // This would come from your actual credit check
+        };
+        
+        sessionStorage.setItem('creditApproval', JSON.stringify(approvalData));
+        sessionStorage.setItem('buyNowCreditComplete', 'true');
+        
+        // Redirect back to the vehicle page where BuyNowModal will reopen
+        navigate(-1); // Go back to previous page
+      } else {
+        // Normal flow - show success message
+        setShowSuccess(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setFormData({
+            firstName: '',
+            middleInitial: '',
+            lastName: '',
+            suffix: '',
+            email: '',
+            phone: '',
+            dateOfBirth: '',
+            ssn: '',
+            streetAddress: '',
+            apartment: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            yearsAtAddress: '',
+            monthsAtAddress: '',
+            rentOrOwn: '',
+            monthlyPayment: '',
+            employerName: '',
+            employerPhone: '',
+            jobTitle: '',
+            yearsEmployed: '',
+            monthsEmployed: '',
+            monthlyIncome: '',
+            incomeType: 'salary',
+            additionalIncomeSource: '',
+            additionalIncomeAmount: '',
+            vehicleInterest: '',
+            tradeIn: 'no',
+            downPayment: '',
+            hasCoApplicant: 'no',
+            agreeTerms: false,
+            agreeContact: false
+          });
+          setShowSuccess(false);
+        }, 5000);
+      }
       
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -207,10 +237,16 @@ const FinanceApplicationForm = () => {
 
   return (
     <div className="finance-application-form">
-      {showSuccess && (
+      {showSuccess && !buyNowReturn && (
         <div className="success-message">
           <h3>Application Submitted Successfully!</h3>
           <p>Thank you for your application. Our finance team will review your information and contact you within 1 business day.</p>
+        </div>
+      )}
+
+      {buyNowReturn && (
+        <div className="buy-now-notice">
+          <p>Complete this application to see your personalized rate and continue with your purchase.</p>
         </div>
       )}
 
@@ -690,8 +726,17 @@ const FinanceApplicationForm = () => {
             className="submit-button"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Submitting Application...' : 'Submit Application'}
+            {isSubmitting ? 'Processing...' : buyNowReturn ? 'Get My Rate & Continue' : 'Submit Application'}
           </button>
+          {buyNowReturn && (
+            <button 
+              type="button" 
+              className="cancel-button"
+              onClick={() => navigate(-1)}
+            >
+              Cancel & Return
+            </button>
+          )}
           <p className="privacy-note">
             Your information is secure and will only be used for credit evaluation purposes. 
             View our <a href="/privacy-policy">Privacy Policy</a>.
