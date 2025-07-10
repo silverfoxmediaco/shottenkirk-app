@@ -70,7 +70,7 @@
   }
   
   .progress-step.active {
-    background: #dc2626;
+    background: #1976d2;
   }
   
   .modal-body {
@@ -123,7 +123,7 @@
   .price-amount {
     font-size: 48px;
     font-weight: 700;
-    color: #dc2626;
+    color: #1976d2;
   }
   
   .key-features {
@@ -160,14 +160,14 @@
   }
   
   .option-card:hover {
-    border-color: #dc2626;
+    border-color: #1976d2;
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
   
   .option-card.selected {
-    border-color: #dc2626;
-    background: #fef2f2;
+    border-color: #1976d2;
+    background: #e3f2fd;
   }
   
   .option-icon {
@@ -229,7 +229,7 @@
   }
   
   .pre-approval-btn {
-    background: #dc2626;
+    background: #1976d2;
     color: white;
     padding: 15px 40px;
     border: none;
@@ -238,6 +238,11 @@
     font-weight: 600;
     cursor: pointer;
     margin: 20px 10px 10px;
+  }
+  
+  .pre-approval-btn:hover {
+    background: #155bb5;
+    transform: translateY(-1px);
   }
   
   .skip-btn {
@@ -279,6 +284,12 @@
     font-size: 16px;
   }
   
+  .input-group input:focus,
+  .input-group select:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+  
   /* Build Deal Step */
   .builder-section {
     margin-bottom: 40px;
@@ -307,12 +318,12 @@
   }
   
   .add-on-card:hover {
-    border-color: #dc2626;
+    border-color: #1976d2;
   }
   
   .add-on-card.selected {
-    border-color: #dc2626;
-    background: #fef2f2;
+    border-color: #1976d2;
+    background: #e3f2fd;
   }
   
   .add-on-card h5 {
@@ -329,7 +340,7 @@
   .add-on-card .price {
     font-size: 18px;
     font-weight: 600;
-    color: #dc2626;
+    color: #1976d2;
   }
   
   .accessories-grid {
@@ -363,7 +374,54 @@
   
   .accessory-price {
     font-weight: 600;
-    color: #dc2626;
+    color: #1976d2;
+  }
+  
+  /* Customer Info Step */
+  .customer-info-step .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .customer-info-step .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .customer-info-step .form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .customer-info-step .form-group input,
+  .customer-info-step .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .customer-info-step .form-group input:focus,
+  .customer-info-step .form-group select:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+  
+  .customer-info-step .form-group input.error,
+  .customer-info-step .form-group select.error {
+    border-color: #ef4444;
+  }
+  
+  .customer-info-step .error-message {
+    display: block;
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
   }
   
   /* Delivery Step */
@@ -390,6 +448,181 @@
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     font-size: 16px;
+  }
+  
+  /* Confirmation Step */
+  .confirmation-step .purchase-summary {
+    background: #f9fafb;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  
+  .confirmation-step .summary-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .confirmation-step .summary-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  
+  .confirmation-step .summary-section h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+  }
+  
+  .confirmation-step .summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  
+  .confirmation-step .summary-item .label {
+    color: #666;
+  }
+  
+  .confirmation-step .summary-item .value {
+    color: #1a1a1a;
+    font-weight: 500;
+  }
+  
+  .confirmation-step .summary-item.trade-in .value {
+    color: #059669;
+  }
+  
+  .confirmation-step .summary-item.total {
+    font-size: 18px;
+    font-weight: 600;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 2px solid #333;
+  }
+  
+  .confirmation-step .summary-item.monthly {
+    background: #1976d2;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+  
+  .confirmation-step .summary-item.monthly .label,
+  .confirmation-step .summary-item.monthly .value {
+    color: white;
+  }
+  
+  .terms-section {
+    margin-bottom: 30px;
+  }
+  
+  .terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    padding: 20px;
+    background: #f3f4f6;
+    border-radius: 8px;
+  }
+  
+  .terms-checkbox input {
+    margin-right: 12px;
+    margin-top: 2px;
+  }
+  
+  .confirm-purchase-btn {
+    width: 100%;
+    padding: 20px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .confirm-purchase-btn:hover:not(.disabled) {
+    background: #155bb5;
+    transform: translateY(-1px);
+  }
+  
+  .confirm-purchase-btn.disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  /* Purchase Complete Step */
+  .purchase-complete-step {
+    text-align: center;
+    padding: 60px 0;
+  }
+  
+  .success-icon {
+    font-size: 80px;
+    margin-bottom: 30px;
+  }
+  
+  .purchase-complete-step h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #059669;
+  }
+  
+  .success-message {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #666;
+  }
+  
+  .next-steps-card {
+    background: #f3f4f6;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .next-steps-card h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .next-steps-card ol {
+    padding-left: 20px;
+  }
+  
+  .next-steps-card li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  .contact-info {
+    margin-bottom: 30px;
+  }
+  
+  .close-btn {
+    padding: 15px 40px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background: #155bb5;
+    transform: translateY(-1px);
   }
   
   /* Deal Summary */
@@ -431,7 +664,7 @@
   }
   
   .monthly-payment-display {
-    background: #dc2626;
+    background: #1976d2;
     color: white;
     padding: 25px;
     border-radius: 8px;
@@ -463,7 +696,7 @@
   .complete-btn {
     width: 100%;
     padding: 18px;
-    background: #dc2626;
+    background: #1976d2;
     color: white;
     border: none;
     border-radius: 8px;
@@ -476,12 +709,12 @@
   
   .continue-btn:hover,
   .complete-btn:hover {
-    background: #b91c1c;
+    background: #155bb5;
     transform: translateY(-1px);
   }
   
   .back-btn {
-    position: absolute;
+    position: fixed;
     bottom: 40px;
     left: 40px;
     background: none;
@@ -490,6 +723,69 @@
     font-size: 16px;
     cursor: pointer;
     text-decoration: underline;
+    z-index: 10;
+  }
+  
+  /* Approval Banner */
+  .approval-banner {
+    background: #f0fdf4;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .approval-icon {
+    font-size: 32px;
+    color: #059669;
+  }
+  
+  /* Buy Now CTA in TestDriveModal */
+  .buy-now-cta {
+    width: 100%;
+    padding: 0.75rem;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .buy-now-cta:hover {
+    background: #155bb5;
+    transform: translateY(-1px);
+  }
+  
+  /* Buy Now Notice */
+  .buy-now-notice {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1976d2;
+  }
+  
+  /* Cancel Button */
+  .cancel-button {
+    background: transparent;
+    color: #666;
+    border: 1px solid #e0e0e0;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+  }
+  
+  .cancel-button:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
   }
   
   /* Responsive */
@@ -528,5 +824,14 @@
     
     .accessories-grid {
       grid-template-columns: 1fr;
+    }
+    
+    .customer-info-step .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .back-btn {
+      bottom: 20px;
+      left: 20px;
     }
   }
