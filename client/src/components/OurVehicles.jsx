@@ -1,6 +1,7 @@
 // src/components/OurVehicles.jsx
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/OurVehicles.css';
 
 const vehicleData = {
@@ -71,6 +72,11 @@ const vehicleData = {
 
 const OurVehicles = () => {
   const [selectedBrand, setSelectedBrand] = useState('Ram');
+  const navigate = useNavigate();
+
+  const handleViewInventory = () => {
+    navigate('/new-vehicles');
+  };
 
   return (
     <section className="our-vehicles">
@@ -101,7 +107,7 @@ const OurVehicles = () => {
       </div>
 
       <div className="view-all-button">
-      <button className="button-primary" onClick={handleViewInventory}>View All New Vehicles</button>
+        <button className="button-primary" onClick={handleViewInventory}>View All New Vehicles</button>
       </div>
     </section>
   );
