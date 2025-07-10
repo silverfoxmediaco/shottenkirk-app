@@ -24,6 +24,7 @@ export const vehicleImages = {
 };
 
 export const getVehicleImage = (vehicleName) => {
-  // Return the mapped image or a placeholder
-  return vehicleImages[vehicleName] || "/sklogoV2300.png";
+  const imagePath = vehicleImages[vehicleName] || "/images/sklogoV2300.png";
+  console.log(`Vehicle: "${vehicleName}" -> Image: "${imagePath}"`);
+  return imagePath;
 };

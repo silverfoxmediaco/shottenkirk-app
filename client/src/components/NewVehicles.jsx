@@ -163,7 +163,7 @@ const NewVehicles = () => {
                   src={getVehicleImage(vehicle.vehicle)}
                   alt={vehicle.vehicle}
                   onError={(e) => {
-                    e.target.src = '/sklogoV2300.png';
+                    e.target.src = '/images/sklogoV2300.png';
                   }}
                 />
                 <span className="stock-badge">Stock #{vehicle.stockNumber}</span>
