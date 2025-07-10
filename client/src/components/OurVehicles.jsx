@@ -9,63 +9,63 @@ const vehicleData = {
     {
       name: 'Pacifica',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Chrysler/pacifica.png',
-      link: '/new-vehicles/pacifica/',
+      link: '/new-vehicles',
     },
     {
       name: 'Pacifica Plug-In Hybrid',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Chrysler/pacifica-hybrid.png',
-      link: '/new-vehicles/pacifica-plug-in-hybrid/',
+      link: '/new-vehicles',
     },
   ],
   Dodge: [
     {
       name: 'Durango',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Dodge/durango.png',
-      link: '/new-vehicles/durango/',
+      link: '/new-vehicles',
     },
     {
       name: 'Charger',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Dodge/charger.png',
-      link: '/new-vehicles/charger/',
+      link: '/new-vehicles',
     },
     {
       name: 'Hornet',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Dodge/hornet.png',
-      link: '/new-vehicles/hornet/',
+      link: '/new-vehicles',
     },
   ],
   Jeep: [
     {
       name: 'Compass',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Jeep/compass.png',
-      link: '/new-vehicles/compass/',
+      link: '/new-vehicles',
     },
     {
       name: 'Grand Cherokee',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Jeep/new-grand-cherokee.png',
-      link: '/new-vehicles/grand-cherokee/',
+      link: '/new-vehicles',
     },
     {
       name: 'Wrangler',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Jeep/wrangler.png',
-      link: '/new-vehicles/wrangler/',
+      link: '/new-vehicles',
     },
   ],
   Ram: [
     {
       name: 'RAM 1500',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Ram/1500-ram.png',
-      link: '/new-vehicles/ram-1500/',
+      link: '/new-vehicles',
     },
     {
       name: 'RAM 2500',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Ram/ram-2500.png',
-      link: '/new-vehicles/ram-2500/',
+      link: '/new-vehicles',
     },
     {
       name: 'Promaster',
       img: 'https://di-sitebuilder-assets.dealerinspire.com/Stellantis/modelImages/Ram/promaster.png',
-      link: '/new-vehicles/promaster/',
+      link: '/new-vehicles',
     },
   ],
 };
@@ -73,6 +73,13 @@ const vehicleData = {
 const OurVehicles = () => {
   const [selectedBrand, setSelectedBrand] = useState('Ram');
   const navigate = useNavigate();
+
+  const handleVehicleClick = (e, vehicleName) => {
+    e.preventDefault();
+    // For now, navigate to the main inventory page
+    // You can later add query params or filters based on the vehicle
+    navigate('/new-vehicles');
+  };
 
   const handleViewInventory = () => {
     navigate('/new-vehicles');
@@ -99,7 +106,12 @@ const OurVehicles = () => {
 
       <div className="vehicle-grid">
         {vehicleData[selectedBrand].map((vehicle) => (
-          <a key={vehicle.name} href={vehicle.link} className="vehicle-card">
+          <a 
+            key={vehicle.name} 
+            href={vehicle.link} 
+            className="vehicle-card"
+            onClick={(e) => handleVehicleClick(e, vehicle.name)}
+          >
             <img src={vehicle.img} alt={vehicle.name} />
             <p>{vehicle.name}</p>
           </a>
@@ -107,7 +119,9 @@ const OurVehicles = () => {
       </div>
 
       <div className="view-all-button">
-        <button className="button-primary" onClick={handleViewInventory}>View All New Vehicles</button>
+        <button className="button-primary" onClick={handleViewInventory}>
+          View All New Vehicles
+        </button>
       </div>
     </section>
   );
