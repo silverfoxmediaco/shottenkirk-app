@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import NewVehicles from './components/NewVehicles';
+import VehicleDetails from './pages/VehicleDetails';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new-vehicles" element={<NewVehicles />} />
+        <Route path="/vehicle/:id" element={<VehicleDetails />} />
         <Route path="/pre-owned" element={<div style={{ padding: '2rem', textAlign: 'center' }}>Pre-Owned Vehicles Coming Soon</div>} />
         <Route path="/finance" element={<div style={{ padding: '2rem', textAlign: 'center' }}>Finance Coming Soon</div>} />
         <Route path="/specials" element={<div style={{ padding: '2rem', textAlign: 'center' }}>Specials Coming Soon</div>} />

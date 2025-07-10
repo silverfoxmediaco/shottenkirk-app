@@ -1,9 +1,11 @@
 // src/components/NewVehicles.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/NewVehicles.css';
 import { getVehicleImage } from '../utils/vehicleImages';
 
 const NewVehicles = () => {
+  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [filteredVehicles, setFilteredVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -201,7 +203,7 @@ const NewVehicles = () => {
                 )}
 
                 <div className="vehicle-actions">
-                  <button className="btn-primary">View Details</button>
+                  <button className="btn-primary" onClick={() => navigate(`/vehicle/${vehicle._id}`)}>View Details</button>
                   <button className="btn-secondary">Schedule Test Drive</button>
                 </div>
               </div>
