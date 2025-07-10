@@ -1,6 +1,7 @@
 // src/components/NewVehicles.jsx
 import React, { useState, useEffect } from 'react';
 import '../styles/NewVehicles.css';
+import { getVehicleImage } from '../utils/vehicleImages';
 
 const NewVehicles = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -159,8 +160,11 @@ const NewVehicles = () => {
             <div key={vehicle._id} className="vehicle-card">
               <div className="vehicle-image">
                 <img 
-                  src={`https://via.placeholder.com/400x300/1976d2/ffffff?text=${encodeURIComponent(vehicle.class)}`}
+                  src={getVehicleImage(vehicle.vehicle)}
                   alt={vehicle.vehicle}
+                  onError={(e) => {
+                    e.target.src = '/images/placeholder-vehicle.jpg';
+                  }}
                 />
                 <span className="stock-badge">Stock #{vehicle.stockNumber}</span>
               </div>
