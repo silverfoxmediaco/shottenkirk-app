@@ -10,7 +10,7 @@ const Hero = () => {
         <h1>
           Made in <span className="flag-text">America</span> with Pride
         </h1>
-        <button className="hero-cta" onClick={{handleViewInventory}}>View Inventory</button>
+        <button className="hero-cta" onClick={handleViewInventory}>View Inventory</button>
       </div>
     </section>
   );

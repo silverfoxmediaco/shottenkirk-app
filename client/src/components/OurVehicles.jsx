@@ -101,7 +101,7 @@ const OurVehicles = () => {
       </div>
 
       <div className="view-all-button">
-        <a href="/new-vehicles/" className="button-primary">View All New Vehicles</a>
+      <button className="button-primary" onClick={handleViewInventory}>View All New Vehicles</button>
       </div>
     </section>
   );
