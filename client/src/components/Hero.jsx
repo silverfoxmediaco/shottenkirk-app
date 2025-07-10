@@ -1,9 +1,16 @@
 // src/components/Hero.jsx
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Hero.css';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleViewInventory = () => {
+    navigate('/new-vehicles');
+  };
+
   return (
     <section className="hero-section">
       <div className="hero-overlay">
