@@ -1,0 +1,455 @@
+/* client/src/styles/PaymentCalculator.css */
+
+.payment-calculator {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    padding: 40px;
+  }
+  
+  /* Calculator Form */
+  .calculator-form {
+    padding-right: 40px;
+    border-right: 1px solid #e0e0e0;
+  }
+  
+  .calculator-form h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #c8102e;
+    display: inline-block;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-prefix,
+  .input-suffix {
+    position: absolute;
+    color: #666;
+    font-weight: 500;
+    pointer-events: none;
+  }
+  
+  .input-prefix {
+    left: 12px;
+  }
+  
+  .input-suffix {
+    right: 12px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: white;
+  }
+  
+  .input-wrapper input[type="text"],
+  .input-wrapper input[type="number"] {
+    padding-left: 25px;
+  }
+  
+  .input-wrapper input[type="number"].has-suffix {
+    padding-right: 35px;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #c8102e;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+  }
+  
+  .form-group input.error {
+    border-color: #dc3545;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .field-hint {
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .form-separator {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 30px 0;
+  }
+  
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .form-actions {
+    margin-top: 30px;
+  }
+  
+  .reset-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .reset-button:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Calculator Results */
+  .calculator-results {
+    padding-left: 40px;
+  }
+  
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .results-header h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  
+  .print-button {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .print-button:hover {
+    border-color: #c8102e;
+    color: #c8102e;
+  }
+  
+  /* Monthly Payment Display */
+  .monthly-payment-display {
+    background: linear-gradient(135deg, #c8102e 0%, #a00d24 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgba(200, 16, 46, 0.2);
+  }
+  
+  .payment-label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+  
+  .payment-amount {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .payment-term {
+    display: block;
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+  
+  /* Results Summary */
+  .results-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 0.95rem;
+  }
+  
+  .summary-row.total {
+    border-top: 2px solid #ddd;
+    margin-top: 10px;
+    padding-top: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Breakdown Toggle */
+  .breakdown-toggle {
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  .breakdown-toggle:hover {
+    background-color: #e9ecef;
+    border-color: #c8102e;
+  }
+  
+  /* Payment Breakdown */
+  .payment-breakdown {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .payment-breakdown h4 {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+  }
+  
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .breakdown-item {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .breakdown-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .breakdown-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  
+  /* Calculator Disclaimer */
+  .calculator-disclaimer {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+  }
+  
+  .calculator-disclaimer p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #856404;
+    line-height: 1.6;
+  }
+  
+  /* Calculator CTA */
+  .calculator-cta {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .calculator-cta h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .calculator-cta p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .apply-button,
+  .contact-button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .apply-button {
+    background-color: #c8102e;
+    color: white;
+  }
+  
+  .apply-button:hover {
+    background-color: #a00d24;
+    transform: translateY(-2px);
+  }
+  
+  .contact-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .contact-button:hover {
+    background-color: white;
+    color: #1a1a1a;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .calculator-container {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  
+    .calculator-form {
+      padding-right: 0;
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 40px;
+      margin-bottom: 40px;
+    }
+  
+    .calculator-results {
+      padding-left: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .calculator-container {
+      padding: 20px;
+    }
+  
+    .payment-amount {
+      font-size: 2.5rem;
+    }
+  
+    .breakdown-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+    }
+  
+    .apply-button,
+    .contact-button {
+      width: 100%;
+    }
+  }
+  
+  /* Print Styles */
+  @media print {
+    .calculator-form,
+    .print-button,
+    .reset-button,
+    .breakdown-toggle,
+    .calculator-cta {
+      display: none;
+    }
+  
+    .calculator-container {
+      grid-template-columns: 1fr;
+      box-shadow: none;
+      padding: 20px;
+    }
+  
+    .calculator-results {
+      padding: 0;
+    }
+  
+    .payment-breakdown {
+      display: block !important;
+    }
+  }

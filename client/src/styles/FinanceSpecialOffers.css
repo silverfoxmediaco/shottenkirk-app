@@ -1,0 +1,432 @@
+/* client/src/styles/FinanceSpecialOffers.css */
+
+.finance-special-offers {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Header */
+  .offers-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .offers-header h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+  
+  .offers-header p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Filters */
+  .offers-filters {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .filter-group label {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  
+  .filter-group select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+  }
+  
+  .filter-group select:hover {
+    border-color: #c8102e;
+  }
+  
+  .filter-group select:focus {
+    outline: none;
+    border-color: #c8102e;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+  }
+  
+  /* Offers Grid */
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  
+  /* Offer Card */
+  .offer-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  }
+  
+  .offer-card.featured {
+    border: 2px solid #c8102e;
+  }
+  
+  .featured-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #c8102e;
+    color: white;
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-bottom-left-radius: 5px;
+    z-index: 1;
+  }
+  
+  /* Offer Header */
+  .offer-header {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .offer-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #c8102e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  
+  .offer-brand-info {
+    flex: 1;
+  }
+  
+  .offer-type {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+  }
+  
+  .offer-header h3 {
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  
+  /* Offer Content */
+  .offer-content {
+    padding: 25px;
+  }
+  
+  .offer-headline {
+    font-size: 1.5rem;
+    color: #c8102e;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  
+  .offer-subheadline {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .offer-details {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .offer-details li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .offer-details li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .offer-disclaimer {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  /* Offer Footer */
+  .offer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .expiration {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .expiration.expiring-soon .urgent {
+    color: #dc3545;
+    font-weight: 600;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+  
+  .view-inventory-btn {
+    background-color: #c8102e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .view-inventory-btn:hover {
+    background-color: #a00d24;
+    transform: translateY(-2px);
+  }
+  
+  /* No Offers Message */
+  .no-offers {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+  }
+  
+  .no-offers p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .no-offers button {
+    background-color: #c8102e;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .no-offers button:hover {
+    background-color: #a00d24;
+  }
+  
+  /* Disclaimer Section */
+  .offers-disclaimer {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+  }
+  
+  .offers-disclaimer h3 {
+    font-size: 1.3rem;
+    color: #856404;
+    margin-bottom: 15px;
+  }
+  
+  .offers-disclaimer ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #856404;
+  }
+  
+  .offers-disclaimer li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  
+  /* CTA Section */
+  .offers-cta {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .offers-cta h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .offers-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .primary-cta,
+  .secondary-cta {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .primary-cta {
+    background-color: #c8102e;
+    color: white;
+  }
+  
+  .primary-cta:hover {
+    background-color: #a00d24;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+  }
+  
+  .secondary-cta {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-cta:hover {
+    background-color: white;
+    color: #1a1a1a;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .offers-header h2 {
+      font-size: 2rem;
+    }
+  
+    .offers-filters {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .filter-group select {
+      width: 250px;
+    }
+  
+    .offers-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .offer-header {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .offer-icon {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+  
+    .offer-footer {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .view-inventory-btn {
+      width: 100%;
+    }
+  
+    .offers-cta {
+      padding: 30px 20px;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+    }
+  
+    .primary-cta,
+    .secondary-cta {
+      width: 100%;
+    }
+  }
+  
+  /* Print Styles */
+  @media print {
+    .offers-filters,
+    .view-inventory-btn,
+    .offers-cta {
+      display: none;
+    }
+  
+    .offer-card {
+      break-inside: avoid;
+      box-shadow: none;
+      border: 1px solid #ddd;
+    }
+  }

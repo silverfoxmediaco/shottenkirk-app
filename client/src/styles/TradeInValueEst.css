@@ -1,0 +1,553 @@
+/* client/src/styles/TradeInValueEst.css */
+
+.tradein-estimator {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Header */
+  .estimator-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .estimator-header h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+  
+  .estimator-header p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Progress Bar */
+  .progress-bar {
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background-color: #c8102e;
+    transition: width 0.3s ease;
+  }
+  
+  .step-indicator {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+  }
+  
+  /* Form */
+  .tradein-form {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .form-step h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #c8102e;
+    display: inline-block;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="number"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: white;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #c8102e;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+  }
+  
+  .form-group input.error,
+  .form-group select.error {
+    border-color: #dc3545;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .field-hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  /* Radio Grid for Conditions */
+  .condition-section .radio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .radio-option {
+    display: block;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .radio-option:hover {
+    border-color: #c8102e;
+    background-color: #f8f9fa;
+  }
+  
+  .radio-option input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .radio-option .radio-label {
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  .radio-option .condition-desc {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    margin-left: 25px;
+  }
+  
+  .radio-option:has(input:checked) {
+    border-color: #c8102e;
+    background-color: #fff5f5;
+  }
+  
+  /* Radio Inline */
+  .radio-inline {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .radio-inline .radio-option {
+    padding: 10px 20px;
+  }
+  
+  /* Checkbox Grid */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  
+  .checkbox-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .checkbox-option:hover {
+    border-color: #c8102e;
+    background-color: #f8f9fa;
+  }
+  
+  .checkbox-option input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .checkbox-option:has(input:checked) {
+    border-color: #c8102e;
+    background-color: #fff5f5;
+  }
+  
+  /* Form Navigation */
+  .form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 20px;
+  }
+  
+  .back-button,
+  .next-button,
+  .submit-button {
+    padding: 12px 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .back-button {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .next-button,
+  .submit-button {
+    background-color: #c8102e;
+    color: white;
+    margin-left: auto;
+  }
+  
+  .next-button:hover,
+  .submit-button:hover:not(:disabled) {
+    background-color: #a00d24;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+  }
+  
+  .submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* Benefits */
+  .estimator-benefits {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .estimator-benefits h3 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  
+  .benefit-item {
+    text-align: center;
+  }
+  
+  .benefit-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .benefit-item h4 {
+    font-size: 1.2rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+  
+  .benefit-item p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  /* Results Page */
+  .tradein-results {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .results-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .results-container h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+  }
+  
+  .vehicle-summary {
+    margin-bottom: 40px;
+  }
+  
+  .vehicle-summary h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .vehicle-summary p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Value Display */
+  .value-display {
+    background-color: #f8f9fa;
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .value-range {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .value-item {
+    text-align: center;
+  }
+  
+  .value-item .label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .value-item .amount {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  .value-item.low .amount {
+    color: #6c757d;
+  }
+  
+  .value-item.average .amount {
+    color: #c8102e;
+    font-size: 2.5rem;
+  }
+  
+  .value-item.high .amount {
+    color: #28a745;
+  }
+  
+  /* Results Disclaimer */
+  .results-disclaimer {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+  }
+  
+  .results-disclaimer p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #856404;
+    line-height: 1.6;
+  }
+  
+  /* Next Steps */
+  .next-steps {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  
+  .next-steps h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+  }
+  
+  .next-steps ol {
+    padding-left: 20px;
+    color: #333;
+  }
+  
+  .next-steps li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  /* Results Actions */
+  .results-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .primary-button,
+  .secondary-button {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .primary-button {
+    background-color: #c8102e;
+    color: white;
+  }
+  
+  .primary-button:hover {
+    background-color: #a00d24;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+  }
+  
+  .secondary-button {
+    background-color: transparent;
+    color: #c8102e;
+    border: 2px solid #c8102e;
+  }
+  
+  .secondary-button:hover {
+    background-color: #c8102e;
+    color: white;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tradein-form {
+      padding: 20px;
+    }
+  
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .condition-section .radio-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .radio-inline {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .checkbox-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .form-navigation {
+      flex-direction: column;
+    }
+  
+    .back-button,
+    .next-button,
+    .submit-button {
+      width: 100%;
+    }
+  
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .results-container {
+      padding: 30px 20px;
+    }
+  
+    .value-range {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  
+    .results-actions {
+      flex-direction: column;
+    }
+  
+    .primary-button,
+    .secondary-button {
+      width: 100%;
+    }
+  }
+  
+  /* Loading Animation */
+  @keyframes pulse {
+    0% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.6;
+    }
+  }
+  
+  .submit-button:disabled {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
