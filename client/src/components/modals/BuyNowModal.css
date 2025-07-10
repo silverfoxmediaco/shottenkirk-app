@@ -1,0 +1,532 @@
+/* src/components/modals/BuyNowModal.css */
+.buy-now-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  .buy-now-modal {
+    background: white;
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+  
+  .modal-close:hover {
+    background: #f5f5f5;
+    color: #333;
+  }
+  
+  .progress-indicator {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    margin: 0 40px;
+  }
+  
+  .progress-step {
+    width: 60px;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  
+  .progress-step.active {
+    background: #dc2626;
+  }
+  
+  .modal-body {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .left-panel {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .right-panel {
+    width: 400px;
+    background: #f9fafb;
+    padding: 40px 30px;
+    border-left: 1px solid #e0e0e0;
+    overflow-y: auto;
+  }
+  
+  /* Overview Step */
+  .overview-step {
+    text-align: center;
+    padding: 60px 0;
+  }
+  
+  .vehicle-showcase h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  
+  .price-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .price-label {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .price-amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: #dc2626;
+  }
+  
+  .key-features {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .feature {
+    color: #059669;
+    font-size: 16px;
+  }
+  
+  /* Common Step Styles */
+  .step-content h3 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+  }
+  
+  .option-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .option-card:hover {
+    border-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .option-card.selected {
+    border-color: #dc2626;
+    background: #fef2f2;
+  }
+  
+  .option-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+  
+  .option-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+  }
+  
+  .option-desc {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Trade-in Step */
+  .trade-in-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .trade-in-summary {
+    background: #f0fdf4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Financing Step */
+  .financing-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .financing-details {
+    margin-top: 30px;
+  }
+  
+  .soft-credit-check {
+    background: #f3f4f6;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .soft-credit-check h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .pre-approval-btn {
+    background: #dc2626;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 10px 10px;
+  }
+  
+  .skip-btn {
+    background: transparent;
+    color: #666;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .financing-calculator {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .calc-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #666;
+  }
+  
+  .input-group input,
+  .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  /* Build Deal Step */
+  .builder-section {
+    margin-bottom: 40px;
+  }
+  
+  .builder-section h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  
+  .protection-options,
+  .maintenance-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .add-on-card {
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  
+  .add-on-card:hover {
+    border-color: #dc2626;
+  }
+  
+  .add-on-card.selected {
+    border-color: #dc2626;
+    background: #fef2f2;
+  }
+  
+  .add-on-card h5 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .add-on-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 4px 0;
+  }
+  
+  .add-on-card .price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #dc2626;
+  }
+  
+  .accessories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .accessory-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .accessory-item:hover {
+    background: #f9fafb;
+  }
+  
+  .accessory-item input {
+    margin-right: 12px;
+  }
+  
+  .accessory-name {
+    flex: 1;
+    font-size: 14px;
+  }
+  
+  .accessory-price {
+    font-weight: 600;
+    color: #dc2626;
+  }
+  
+  /* Delivery Step */
+  .delivery-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .scheduling-section {
+    margin-top: 30px;
+  }
+  
+  .scheduling-section h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .scheduling-section input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  /* Deal Summary */
+  .deal-summary {
+    position: sticky;
+    top: 0;
+  }
+  
+  .deal-summary h4 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+  }
+  
+  .summary-lines {
+    font-size: 14px;
+  }
+  
+  .line-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  
+  .line-item.trade-in {
+    color: #059669;
+  }
+  
+  .line-item.total {
+    font-size: 18px;
+    font-weight: 600;
+    padding-top: 15px;
+  }
+  
+  .divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 15px 0;
+  }
+  
+  .monthly-payment-display {
+    background: #dc2626;
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .payment-label {
+    display: block;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  .payment-amount {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+  
+  .payment-term {
+    display: block;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  
+  /* Common Buttons */
+  .continue-btn,
+  .complete-btn {
+    width: 100%;
+    padding: 18px;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s;
+  }
+  
+  .continue-btn:hover,
+  .complete-btn:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+  }
+  
+  .back-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .buy-now-modal {
+      max-width: 100%;
+      height: 100vh;
+      border-radius: 0;
+    }
+    
+    .modal-body {
+      flex-direction: column;
+    }
+    
+    .right-panel {
+      width: 100%;
+      border-left: none;
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    .financing-options,
+    .trade-in-options,
+    .delivery-options {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .left-panel {
+      padding: 20px;
+    }
+    
+    .right-panel {
+      padding: 20px;
+    }
+    
+    .accessories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
