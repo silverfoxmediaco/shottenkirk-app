@@ -1,9 +1,11 @@
 // client/src/components/TradeInValueEst.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/TradeInValueEst.css';
 
 const TradeInValueEst = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     // Vehicle Information
@@ -46,6 +48,17 @@ const TradeInValueEst = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [estimatedValue, setEstimatedValue] = useState(null);
+  
+  // Check if coming from BuyNowModal
+  const [buyNowReturn, setBuyNowReturn] = useState(false);
+  
+  useEffect(() => {
+    const buyNowState = sessionStorage.getItem('buyNowState');
+    const buyNowVehicle = sessionStorage.getItem('buyNowVehicle');
+    if (buyNowState && buyNowVehicle) {
+      setBuyNowReturn(true);
+    }
+  }, []);
 
   // Mock data - in production, these would come from an API
   const vehicleMakes = [
@@ -247,12 +260,32 @@ const TradeInValueEst = () => {
       // Calculate estimated value
       const value = calculateEstimatedValue();
       setEstimatedValue(value);
-      setShowResults(true);
       
-      // Here you would normally send the data to your backend
+      // If coming from BuyNowModal, store the trade-in value and redirect back
+      if (buyNowReturn) {
+        const tradeInData = {
+          hasTradeIn: true,
+          estimatedValue: value.average,
+          details: {
+            vehicle: `${formData.year} ${formData.make} ${formData.model}`,
+            mileage: formData.mileage,
+            condition: formData.bodyCondition,
+            vin: formData.vin
+          }
+        };
+        
+        sessionStorage.setItem('tradeInEstimate', JSON.stringify(tradeInData));
+        sessionStorage.setItem('buyNowTradeInComplete', 'true');
+        
+        // Redirect back to the vehicle page where BuyNowModal will reopen
+        navigate(-1);
+      } else {
+        // Normal flow - show results
+        setShowResults(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      
       console.log('Trade-in submission:', formData);
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
       
     } catch (error) {
       console.error('Error submitting trade-in:', error);
@@ -262,7 +295,7 @@ const TradeInValueEst = () => {
     }
   };
 
-  if (showResults && estimatedValue) {
+  if (showResults && estimatedValue && !buyNowReturn) {
     return (
       <div className="tradein-results">
         <div className="results-container">
@@ -336,6 +369,11 @@ const TradeInValueEst = () => {
       <div className="estimator-header">
         <h2>Get Your Trade-In Value</h2>
         <p>Find out what your vehicle is worth in just a few minutes</p>
+        {buyNowReturn && (
+          <div className="buy-now-notice">
+            <p>Complete this form to add your trade-in value to your purchase.</p>
+          </div>
+        )}
         
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${(step / 4) * 100}%` }}></div>
@@ -839,7 +877,17 @@ const TradeInValueEst = () => {
               className="submit-button"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Getting Your Value...' : 'Get My Value'}
+              {isSubmitting ? 'Calculating...' : buyNowReturn ? 'Add Trade-In & Continue' : 'Get My Value'}
+            </button>
+          )}
+          
+          {buyNowReturn && (
+            <button 
+              type="button" 
+              className="cancel-button"
+              onClick={() => navigate(-1)}
+            >
+              Skip Trade-In
             </button>
           )}
         </div>
