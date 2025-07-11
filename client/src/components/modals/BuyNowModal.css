@@ -847,6 +847,8 @@
   @media (max-width: 768px) {
     .buy-now-modal-overlay {
       padding: 0;
+      height: 100vh;
+      overflow: hidden;
     }
     
     .buy-now-modal {
@@ -854,6 +856,8 @@
       max-height: 100vh;
       border-radius: 0;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
     
     .modal-header {
@@ -881,14 +885,17 @@
     .modal-body {
       flex-direction: column;
       overflow: visible;
+      height: 100%;
+      position: relative;
     }
     
     .left-panel {
       padding: 20px;
-      flex: none;
-      overflow-y: visible;
-      padding-bottom: 100px;
-      margin-bottom: calc(40vh + 20px);
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 200px; /* Space for fixed bottom panel */
+      height: calc(100vh - 80px); /* Account for header */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
     
     .right-panel {
@@ -896,12 +903,16 @@
       border-left: none;
       border-top: 2px solid #e0e0e0;
       padding: 20px;
-      position: sticky;
+      position: fixed;
       bottom: 0;
-      max-height: 40vh;
+      left: 0;
+      right: 0;
+      max-height: 30vh;
       overflow-y: auto;
       z-index: 10;
       box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+      background: #f9fafb;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
     
     /* Overview Step */
@@ -923,10 +934,18 @@
       align-items: center;
     }
     
-    /* Common Step Styles */
+    /* Ensure content is visible and scrollable */
     .step-content {
       min-height: auto;
       padding-bottom: 20px;
+    }
+    
+    /* Make sure last item isn't hidden behind fixed panel */
+    .builder-section:last-child,
+    .accessories-grid,
+    .continue-btn,
+    .complete-btn {
+      margin-bottom: 50px;
     }
     
     .step-content h3 {
@@ -1070,9 +1089,10 @@
       font-size: 18px;
     }
     
-    /* Deal Summary */
+    /* Deal Summary - Mobile specific */
     .deal-summary {
       position: static;
+      padding-bottom: 20px;
     }
     
     .deal-summary h4 {
