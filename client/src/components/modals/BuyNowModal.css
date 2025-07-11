@@ -894,7 +894,7 @@
       padding: 20px;
       flex: 1;
       overflow-y: auto;
-      padding-bottom: 200px; /* Space for fixed bottom panel */
+      padding-bottom: 300px; /* Space for fixed bottom panel */
       height: calc(100vh - 80px); /* Account for header */
       -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
