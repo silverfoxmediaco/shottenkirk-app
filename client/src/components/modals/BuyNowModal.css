@@ -3,1251 +3,1262 @@
 /* ===== DESKTOP STYLES ===== */
 
 .buy-now-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: 20px;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.buy-now-modal {
+  background: white;
+  width: 100%;
+  max-width: 1200px;
+  height: 90vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  padding: 20px 30px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.progress-indicator {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+  margin: 0 40px;
+}
+
+.progress-step {
+  width: 60px;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  transition: all 0.3s;
+  flex: 1;
+}
+
+.progress-step.active {
+  background: #1976d2;
+}
+
+.modal-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  position: relative;
+  min-height: 0;
+}
+
+.right-panel {
+  width: 400px;
+  background: #f9fafb;
+  padding: 40px 30px;
+  border-left: 1px solid #e0e0e0;
+  overflow-y: auto;
+}
+
+/* Overview Step */
+.overview-step {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.vehicle-showcase h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.price-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price-amount {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1976d2;
+}
+
+.key-features {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.feature {
+  color: #059669;
+  font-size: 16px;
+}
+
+/* Common Step Styles */
+.step-content {
+  min-height: 300px;
+}
+
+.step-content h3 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+.option-card:hover {
+  border-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.option-card.selected {
+  border-color: #1976d2;
+  background: #e3f2fd;
+}
+
+.option-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.option-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.option-desc {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Trade-in Step */
+.trade-in-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.trade-in-summary {
+  background: #f0fdf4;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Financing Step */
+.financing-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.financing-details {
+  margin-top: 30px;
+}
+
+.soft-credit-check {
+  background: #f3f4f6;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.soft-credit-check h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.pre-approval-btn {
+  background: #1976d2;
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 20px 10px 10px;
+}
+
+.pre-approval-btn:hover {
+  background: #155bb5;
+  transform: translateY(-1px);
+}
+
+.skip-btn {
+  background: transparent;
+  color: #666;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.financing-calculator {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.calc-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+/* Build Deal Step */
+.builder-section {
+  margin-bottom: 40px;
+}
+
+.builder-section h4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.protection-options,
+.maintenance-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.add-on-card {
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.add-on-card:hover {
+  border-color: #1976d2;
+}
+
+.add-on-card.selected {
+  border-color: #1976d2;
+  background: #e3f2fd;
+}
+
+.add-on-card h5 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.add-on-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.add-on-card .price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.accessories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.accessory-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.accessory-item:hover {
+  background: #f9fafb;
+}
+
+.accessory-item input {
+  margin-right: 12px;
+}
+
+.accessory-name {
+  flex: 1;
+  font-size: 14px;
+}
+
+.accessory-price {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+/* Customer Info Step */
+.customer-info-step .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.customer-info-step .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.customer-info-step .form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 500;
+}
+
+.customer-info-step .form-group input,
+.customer-info-step .form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.customer-info-step .form-group input:focus,
+.customer-info-step .form-group select:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.customer-info-step .form-group input.error,
+.customer-info-step .form-group select.error {
+  border-color: #ef4444;
+}
+
+.customer-info-step .error-message {
+  display: block;
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Delivery Step */
+.delivery-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.scheduling-section {
+  margin-top: 30px;
+}
+
+.scheduling-section h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.scheduling-section input {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Confirmation Step */
+.confirmation-step .purchase-summary {
+  background: #f9fafb;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.confirmation-step .summary-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.confirmation-step .summary-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.confirmation-step .summary-section h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.confirmation-step .summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.confirmation-step .summary-item .label {
+  color: #666;
+}
+
+.confirmation-step .summary-item .value {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.confirmation-step .summary-item.trade-in .value {
+  color: #059669;
+}
+
+.confirmation-step .summary-item.total {
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 2px solid #333;
+}
+
+.confirmation-step .summary-item.monthly {
+  background: #1976d2;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.confirmation-step .summary-item.monthly .label,
+.confirmation-step .summary-item.monthly .value {
+  color: white;
+}
+
+.terms-section {
+  margin-bottom: 30px;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 20px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.terms-checkbox input {
+  margin-right: 12px;
+  margin-top: 2px;
+}
+
+.confirm-purchase-btn {
+  width: 100%;
+  padding: 20px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.confirm-purchase-btn:hover:not(.disabled) {
+  background: #155bb5;
+  transform: translateY(-1px);
+}
+
+.confirm-purchase-btn.disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Purchase Complete Step */
+.purchase-complete-step {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.success-icon {
+  font-size: 80px;
+  margin-bottom: 30px;
+}
+
+.purchase-complete-step h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #059669;
+}
+
+.success-message {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.next-steps-card {
+  background: #f3f4f6;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.next-steps-card h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.next-steps-card ol {
+  padding-left: 20px;
+}
+
+.next-steps-card li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.contact-info {
+  margin-bottom: 30px;
+}
+
+.close-btn {
+  padding: 15px 40px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #155bb5;
+  transform: translateY(-1px);
+}
+
+/* Deal Summary */
+.deal-summary {
+  position: sticky;
+  top: 0;
+}
+
+.deal-summary h4 {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.summary-lines {
+  font-size: 14px;
+}
+
+.line-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.line-item.trade-in {
+  color: #059669;
+}
+
+.line-item.total {
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 15px;
+}
+
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 15px 0;
+}
+
+.monthly-payment-display {
+  background: #1976d2;
+  color: white;
+  padding: 25px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.payment-label {
+  display: block;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.payment-amount {
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.payment-term {
+  display: block;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Common Buttons */
+.continue-btn,
+.complete-btn {
+  width: 100%;
+  padding: 18px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  transition: all 0.3s;
+}
+
+.continue-btn:hover,
+.complete-btn:hover {
+  background: #155bb5;
+  transform: translateY(-1px);
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 10;
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Approval Banner */
+.approval-banner {
+  background: #f0fdf4;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.approval-icon {
+  font-size: 32px;
+  color: #059669;
+}
+
+/* Buy Now CTA in TestDriveModal */
+.buy-now-cta {
+  width: 100%;
+  padding: 0.75rem;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buy-now-cta:hover {
+  background: #155bb5;
+  transform: translateY(-1px);
+}
+
+/* Buy Now Notice */
+.buy-now-notice {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #1976d2;
+}
+
+/* Cancel Button */
+.cancel-button {
+  background: transparent;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s;
+}
+
+.cancel-button:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+/* Error Message */
+.error-message {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+
+/* ===== MEDIA QUERIES ===== */
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
   .buy-now-modal {
-    background: white;
-    width: 100%;
-    max-width: 1200px;
-    height: 90vh;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  }
-  
-  .modal-header {
-    padding: 20px 30px;
-    border-bottom: 1px solid #e0e0e0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .modal-close {
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #666;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.2s;
-  }
-  
-  .modal-close:hover {
-    background: #f5f5f5;
-    color: #333;
-  }
-  
-  .progress-indicator {
-    display: flex;
-    gap: 10px;
-    flex: 1;
-    justify-content: center;
-    margin: 0 40px;
-  }
-  
-  .progress-step {
-    width: 60px;
-    height: 4px;
-    background: #e0e0e0;
-    border-radius: 2px;
-    transition: all 0.3s;
-    flex: 1;
-  }
-  
-  .progress-step.active {
-    background: #1976d2;
-  }
-  
-  .modal-body {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
-    min-height: 0;
-  }
-  
-  .left-panel {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-    position: relative;
-    min-height: 0;
+    max-width: 90%;
   }
   
   .right-panel {
-    width: 400px;
-    background: #f9fafb;
-    padding: 40px 30px;
-    border-left: 1px solid #e0e0e0;
-    overflow-y: auto;
+    width: 350px;
   }
   
-  /* Overview Step */
-  .overview-step {
-    text-align: center;
-    padding: 60px 0;
-  }
-  
-  .vehicle-showcase h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    color: #1a1a1a;
-  }
-  
-  .price-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
-  }
-  
-  .price-label {
-    font-size: 14px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .price-amount {
-    font-size: 48px;
-    font-weight: 700;
-    color: #1976d2;
-  }
-  
-  .key-features {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
-  
-  .feature {
-    color: #059669;
-    font-size: 16px;
-  }
-  
-  /* Common Step Styles */
-  .step-content {
-    min-height: 300px;
-  }
-  
-  .step-content h3 {
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #1a1a1a;
-  }
-  
-  .option-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .option-card:hover {
-    border-color: #1976d2;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .option-card.selected {
-    border-color: #1976d2;
-    background: #e3f2fd;
-  }
-  
-  .option-icon {
-    font-size: 48px;
-    margin-bottom: 15px;
-  }
-  
-  .option-title {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #1a1a1a;
-  }
-  
-  .option-desc {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  /* Trade-in Step */
-  .trade-in-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .trade-in-summary {
-    background: #f0fdf4;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  /* Financing Step */
   .financing-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .financing-details {
-    margin-top: 30px;
-  }
-  
-  .soft-credit-check {
-    background: #f3f4f6;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .soft-credit-check h4 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .pre-approval-btn {
-    background: #1976d2;
-    color: white;
-    padding: 15px 40px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 20px 10px 10px;
-  }
-  
-  .pre-approval-btn:hover {
-    background: #155bb5;
-    transform: translateY(-1px);
-  }
-  
-  .skip-btn {
-    background: transparent;
-    color: #666;
-    border: none;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .financing-calculator {
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-  }
-  
-  .calc-inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .input-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: #666;
-  }
-  
-  .input-group input,
-  .input-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 16px;
-  }
-  
-  .input-group input:focus,
-  .input-group select:focus {
-    outline: none;
-    border-color: #1976d2;
-  }
-  
-  /* Build Deal Step */
-  .builder-section {
-    margin-bottom: 40px;
-  }
-  
-  .builder-section h4 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #1a1a1a;
+    grid-template-columns: 1fr;
   }
   
   .protection-options,
   .maintenance-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .buy-now-modal-overlay {
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .buy-now-modal {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-header {
+    padding: 15px;
+    position: relative;
+    z-index: 20;
+    background: white;
+  }
+  
+  .modal-close {
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
+  }
+  
+  .progress-indicator {
+    width: 100%;
+    margin: 10px 0 0 0;
+    gap: 5px;
+    padding: 0 30px;
+  }
+  
+  .progress-step {
+    width: auto;
+    height: 3px;
+  }
+  
+  .modal-body {
+    flex-direction: column;
+    overflow: hidden;
+    height: calc(100vh - 80px);
+    position: relative;
+  }
+  
+  .left-panel {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 40vh; /* Dynamic space based on viewport height */
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  
+  /* Add a spacer element for consistent bottom spacing */
+  .left-panel::after {
+    content: '';
+    display: block;
+    height: 35vh; /* Ensures content can scroll above fixed panel */
+    pointer-events: none;
+  }
+  
+  .right-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 2px solid #e0e0e0;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 35vh; /* Consistent with spacer */
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    background: #f9fafb;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Overview Step */
+  .overview-step {
+    padding: 40px 0;
+  }
+  
+  .vehicle-showcase h2 {
+    font-size: 28px;
+  }
+  
+  .price-amount {
+    font-size: 36px;
+  }
+  
+  .key-features {
+    flex-direction: column;
     gap: 15px;
+    align-items: center;
+  }
+  
+  /* Ensure content is visible and scrollable */
+  .step-content {
+    min-height: auto;
+    padding-bottom: 20px;
+  }
+  
+  .step-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .option-card {
+    padding: 20px;
+  }
+  
+  .option-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .option-title {
+    font-size: 18px;
+  }
+  
+  .option-desc {
+    font-size: 13px;
+  }
+  
+  /* Trade-in Step */
+  .trade-in-options {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  /* Financing Step */
+  .financing-options {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .calc-inputs {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  /* Build Deal Step */
+  .protection-options,
+  .maintenance-options {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
   
   .add-on-card {
-    padding: 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
-  }
-  
-  .add-on-card:hover {
-    border-color: #1976d2;
-  }
-  
-  .add-on-card.selected {
-    border-color: #1976d2;
-    background: #e3f2fd;
+    padding: 15px;
   }
   
   .add-on-card h5 {
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 15px;
   }
   
   .add-on-card p {
-    font-size: 14px;
-    color: #666;
-    margin: 4px 0;
+    font-size: 13px;
   }
   
   .add-on-card .price {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1976d2;
+    font-size: 16px;
   }
   
   .accessories-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  
-  .accessory-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  
-  .accessory-item:hover {
-    background: #f9fafb;
-  }
-  
-  .accessory-item input {
-    margin-right: 12px;
-  }
-  
-  .accessory-name {
-    flex: 1;
-    font-size: 14px;
-  }
-  
-  .accessory-price {
-    font-weight: 600;
-    color: #1976d2;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
   
   /* Customer Info Step */
   .customer-info-step .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  
-  .customer-info-step .form-group.full-width {
-    grid-column: 1 / -1;
-  }
-  
-  .customer-info-step .form-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  .customer-info-step .form-group input,
-  .customer-info-step .form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-  }
-  
-  .customer-info-step .form-group input:focus,
-  .customer-info-step .form-group select:focus {
-    outline: none;
-    border-color: #1976d2;
-  }
-  
-  .customer-info-step .form-group input.error,
-  .customer-info-step .form-group select.error {
-    border-color: #ef4444;
-  }
-  
-  .customer-info-step .error-message {
-    display: block;
-    color: #ef4444;
-    font-size: 12px;
-    margin-top: 4px;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
   
   /* Delivery Step */
   .delivery-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .scheduling-section {
-    margin-top: 30px;
-  }
-  
-  .scheduling-section h4 {
-    font-size: 18px;
-    margin-bottom: 15px;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
   
   .scheduling-section input {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    font-size: 16px;
+    max-width: 100%;
   }
   
   /* Confirmation Step */
   .confirmation-step .purchase-summary {
-    background: #f9fafb;
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
+    padding: 20px;
   }
   
   .confirmation-step .summary-section {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .confirmation-step .summary-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
   }
   
   .confirmation-step .summary-section h4 {
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: #1a1a1a;
+    font-size: 16px;
   }
   
   .confirmation-step .summary-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    font-size: 14px;
+    font-size: 13px;
+    flex-direction: column;
+    gap: 5px;
   }
   
   .confirmation-step .summary-item .label {
-    color: #666;
-  }
-  
-  .confirmation-step .summary-item .value {
-    color: #1a1a1a;
-    font-weight: 500;
-  }
-  
-  .confirmation-step .summary-item.trade-in .value {
-    color: #059669;
+    font-weight: 600;
   }
   
   .confirmation-step .summary-item.total {
-    font-size: 18px;
-    font-weight: 600;
-    padding-top: 15px;
-    margin-top: 15px;
-    border-top: 2px solid #333;
-  }
-  
-  .confirmation-step .summary-item.monthly {
-    background: #1976d2;
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-  }
-  
-  .confirmation-step .summary-item.monthly .label,
-  .confirmation-step .summary-item.monthly .value {
-    color: white;
-  }
-  
-  .terms-section {
-    margin-bottom: 30px;
-  }
-  
-  .terms-checkbox {
-    display: flex;
-    align-items: flex-start;
-    cursor: pointer;
-    padding: 20px;
-    background: #f3f4f6;
-    border-radius: 8px;
-  }
-  
-  .terms-checkbox input {
-    margin-right: 12px;
-    margin-top: 2px;
+    font-size: 16px;
   }
   
   .confirm-purchase-btn {
-    width: 100%;
-    padding: 20px;
-    background: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .confirm-purchase-btn:hover:not(.disabled) {
-    background: #155bb5;
-    transform: translateY(-1px);
-  }
-  
-  .confirm-purchase-btn.disabled {
-    background: #9ca3af;
-    cursor: not-allowed;
+    font-size: 18px;
+    padding: 16px;
   }
   
   /* Purchase Complete Step */
   .purchase-complete-step {
-    text-align: center;
-    padding: 60px 0;
+    padding: 40px 0;
   }
   
   .success-icon {
-    font-size: 80px;
-    margin-bottom: 30px;
+    font-size: 60px;
   }
   
   .purchase-complete-step h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-    color: #059669;
+    font-size: 28px;
   }
   
   .success-message {
-    font-size: 18px;
-    margin-bottom: 40px;
-    color: #666;
+    font-size: 16px;
   }
   
   .next-steps-card {
-    background: #f3f4f6;
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 20px;
   }
   
   .next-steps-card h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 18px;
   }
   
-  .next-steps-card ol {
-    padding-left: 20px;
-  }
-  
-  .next-steps-card li {
-    margin-bottom: 12px;
-    line-height: 1.6;
-  }
-  
-  .contact-info {
-    margin-bottom: 30px;
-  }
-  
-  .close-btn {
-    padding: 15px 40px;
-    background: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
-  .close-btn:hover {
-    background: #155bb5;
-    transform: translateY(-1px);
-  }
-  
-  /* Deal Summary */
+  /* Deal Summary - Mobile specific */
   .deal-summary {
-    position: sticky;
-    top: 0;
+    position: static;
+    padding-bottom: 20px;
   }
   
   .deal-summary h4 {
-    font-size: 20px;
-    margin-bottom: 25px;
-    color: #1a1a1a;
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .deal-summary h4::after {
+    content: '▼';
+    font-size: 12px;
+    color: #666;
   }
   
   .summary-lines {
-    font-size: 14px;
+    font-size: 13px;
   }
   
   .line-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  
-  .line-item.trade-in {
-    color: #059669;
+    padding: 8px 0;
   }
   
   .line-item.total {
-    font-size: 18px;
-    font-weight: 600;
-    padding-top: 15px;
-  }
-  
-  .divider {
-    height: 1px;
-    background: #e0e0e0;
-    margin: 15px 0;
+    font-size: 16px;
   }
   
   .monthly-payment-display {
-    background: #1976d2;
-    color: white;
-    padding: 25px;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .payment-label {
-    display: block;
-    font-size: 14px;
-    opacity: 0.9;
+    padding: 20px;
+    margin-top: 20px;
   }
   
   .payment-amount {
-    display: block;
-    font-size: 36px;
-    font-weight: 700;
-    margin: 10px 0;
-  }
-  
-  .payment-term {
-    display: block;
-    font-size: 14px;
-    opacity: 0.9;
+    font-size: 28px;
   }
   
   /* Common Buttons */
   .continue-btn,
   .complete-btn {
-    width: 100%;
-    padding: 18px;
-    background: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    transition: all 0.3s;
-  }
-  
-  .continue-btn:hover,
-  .complete-btn:hover {
-    background: #155bb5;
-    transform: translateY(-1px);
+    padding: 16px;
+    font-size: 16px;
+    margin-top: 20px;
   }
   
   .back-btn {
-    position: fixed;
-    bottom: 40px;
-    left: 40px;
-    background: white;
-    border: 1px solid #e0e0e0;
-    color: #666;
-    font-size: 16px;
-    cursor: pointer;
-    text-decoration: none;
-    z-index: 10;
-    padding: 10px 20px;
-    border-radius: 6px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    bottom: auto;
+    top: 70px;
+    left: 15px;
+    padding: 8px 16px;
+    font-size: 14px;
+    z-index: 20;
   }
   
-  /* Approval Banner */
-  .approval-banner {
-    background: #f0fdf4;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+  .close-btn {
+    font-size: 14px;
+    padding: 12px 30px;
   }
   
-  .approval-icon {
-    font-size: 32px;
-    color: #059669;
+  .pre-approval-btn {
+    padding: 12px 30px;
+    font-size: 14px;
   }
   
-  /* Buy Now CTA in TestDriveModal */
-  .buy-now-cta {
-    width: 100%;
-    padding: 0.75rem;
-    background: #1976d2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .buy-now-cta:hover {
-    background: #155bb5;
-    transform: translateY(-1px);
-  }
-  
-  /* Buy Now Notice */
-  .buy-now-notice {
-    background: #e3f2fd;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #1976d2;
-  }
-  
-  /* Cancel Button */
   .cancel-button {
-    background: transparent;
-    color: #666;
-    border: 1px solid #e0e0e0;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.3s;
+    padding: 10px 20px;
+    font-size: 14px;
   }
   
-  .cancel-button:hover {
-    background: #f5f5f5;
-    border-color: #ccc;
+  /* Touch-friendly buttons */
+  button {
+    min-height: 44px;
   }
   
-  /* Error Message */
-  .error-message {
-    color: #ef4444;
-    font-size: 12px;
-    margin-top: 4px;
-    display: block;
+  /* Form inputs */
+  .input-group input,
+  .input-group select,
+  .customer-info-step .form-group input,
+  .customer-info-step .form-group select,
+  .scheduling-section input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px;
   }
   
-  /* Form Group */
-  .form-group {
-    margin-bottom: 20px;
+  /* Terms checkbox */
+  .terms-checkbox {
+    padding: 15px;
   }
   
-  .form-group.full-width {
-    grid-column: 1 / -1;
+  .terms-checkbox input {
+    min-width: 20px;
+    min-height: 20px;
+  }
+}
+
+/* Small Mobile Responsive */
+@media (max-width: 480px) {
+  .modal-header {
+    padding: 12px;
   }
   
-  
-  /* ===== MEDIA QUERIES ===== */
-  
-  /* Tablet Responsive */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .buy-now-modal {
-      max-width: 90%;
-    }
-    
-    .right-panel {
-      width: 350px;
-    }
-    
-    .financing-options {
-      grid-template-columns: 1fr;
-    }
-    
-    .protection-options,
-    .maintenance-options {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .progress-indicator {
+    padding: 0 20px;
   }
   
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .buy-now-modal-overlay {
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-    }
-    
-    .buy-now-modal {
-      height: 100vh;
-      max-height: 100vh;
-      border-radius: 0;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .modal-header {
-      padding: 15px;
-    }
-    
-    .modal-close {
-      width: 35px;
-      height: 35px;
-      font-size: 24px;
-    }
-    
-    .progress-indicator {
-      width: 100%;
-      margin: 10px 0 0 0;
-      gap: 5px;
-      padding: 0 30px;
-    }
-    
-    .progress-step {
-      width: auto;
-      height: 3px;
-    }
-    
-    .modal-body {
-      flex-direction: column;
-      overflow: visible;
-      height: 100%;
-      position: relative;
-    }
-    
-    .left-panel {
-      padding: 20px;
-      flex: 1;
-      overflow-y: auto;
-      padding-bottom: 300px; /* Space for fixed bottom panel */
-      height: calc(100vh - 80px); /* Account for header */
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    }
-    
-    .right-panel {
-      width: 100%;
-      border-left: none;
-      border-top: 2px solid #e0e0e0;
-      padding: 20px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      max-height: 30vh;
-      overflow-y: auto;
-      z-index: 10;
-      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-      background: #f9fafb;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    }
-    
-    /* Overview Step */
-    .overview-step {
-      padding: 40px 0;
-    }
-    
-    .vehicle-showcase h2 {
-      font-size: 28px;
-    }
-    
-    .price-amount {
-      font-size: 36px;
-    }
-    
-    .key-features {
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-    
-    /* Ensure content is visible and scrollable */
-    .step-content {
-      min-height: auto;
-      padding-bottom: 20px;
-    }
-    
-    /* Make sure last item isn't hidden behind fixed panel */
-    .builder-section:last-child,
-    .accessories-grid,
-    .continue-btn,
-    .complete-btn {
-      margin-bottom: 50px;
-    }
-    
-    .step-content h3 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    
-    .option-card {
-      padding: 20px;
-    }
-    
-    .option-icon {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-    
-    .option-title {
-      font-size: 18px;
-    }
-    
-    .option-desc {
-      font-size: 13px;
-    }
-    
-    /* Trade-in Step */
-    .trade-in-options {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    /* Financing Step */
-    .financing-options {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    .calc-inputs {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    /* Build Deal Step */
-    .protection-options,
-    .maintenance-options {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    
-    .add-on-card {
-      padding: 15px;
-    }
-    
-    .add-on-card h5 {
-      font-size: 15px;
-    }
-    
-    .add-on-card p {
-      font-size: 13px;
-    }
-    
-    .add-on-card .price {
-      font-size: 16px;
-    }
-    
-    .accessories-grid {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    
-    /* Customer Info Step */
-    .customer-info-step .form-grid {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    /* Delivery Step */
-    .delivery-options {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    .scheduling-section input {
-      max-width: 100%;
-    }
-    
-    /* Confirmation Step */
-    .confirmation-step .purchase-summary {
-      padding: 20px;
-    }
-    
-    .confirmation-step .summary-section {
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-    }
-    
-    .confirmation-step .summary-section h4 {
-      font-size: 16px;
-    }
-    
-    .confirmation-step .summary-item {
-      font-size: 13px;
-      flex-direction: column;
-      gap: 5px;
-    }
-    
-    .confirmation-step .summary-item .label {
-      font-weight: 600;
-    }
-    
-    .confirmation-step .summary-item.total {
-      font-size: 16px;
-    }
-    
-    .confirm-purchase-btn {
-      font-size: 18px;
-      padding: 16px;
-    }
-    
-    /* Purchase Complete Step */
-    .purchase-complete-step {
-      padding: 40px 0;
-    }
-    
-    .success-icon {
-      font-size: 60px;
-    }
-    
-    .purchase-complete-step h2 {
-      font-size: 28px;
-    }
-    
-    .success-message {
-      font-size: 16px;
-    }
-    
-    .next-steps-card {
-      padding: 20px;
-    }
-    
-    .next-steps-card h3 {
-      font-size: 18px;
-    }
-    
-    /* Deal Summary - Mobile specific */
-    .deal-summary {
-      position: static;
-      padding-bottom: 20px;
-    }
-    
-    .deal-summary h4 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .deal-summary h4::after {
-      content: '▼';
-      font-size: 12px;
-      color: #666;
-    }
-    
-    .summary-lines {
-      font-size: 13px;
-    }
-    
-    .line-item {
-      padding: 8px 0;
-    }
-    
-    .line-item.total {
-      font-size: 16px;
-    }
-    
-    .monthly-payment-display {
-      padding: 20px;
-      margin-top: 20px;
-    }
-    
-    .payment-amount {
-      font-size: 28px;
-    }
-    
-    /* Common Buttons */
-    .continue-btn,
-    .complete-btn {
-      padding: 16px;
-      font-size: 16px;
-      margin-top: 20px;
-    }
-    
-    .back-btn {
-      bottom: auto;
-      top: 70px;
-      left: 15px;
-      padding: 8px 16px;
-      font-size: 14px;
-      z-index: 20;
-    }
-    
-    .close-btn {
-      font-size: 14px;
-      padding: 12px 30px;
-    }
-    
-    .pre-approval-btn {
-      padding: 12px 30px;
-      font-size: 14px;
-    }
-    
-    .cancel-button {
-      padding: 10px 20px;
-      font-size: 14px;
-    }
-    
-    /* Touch-friendly buttons */
-    button {
-      min-height: 44px;
-    }
-    
-    /* Form inputs */
-    .input-group input,
-    .input-group select,
-    .customer-info-step .form-group input,
-    .customer-info-step .form-group select,
-    .scheduling-section input {
-      font-size: 16px; /* Prevents zoom on iOS */
-      padding: 12px;
-    }
-    
-    /* Terms checkbox */
-    .terms-checkbox {
-      padding: 15px;
-    }
-    
-    .terms-checkbox input {
-      min-width: 20px;
-      min-height: 20px;
-    }
+  .left-panel {
+    padding: 15px;
+    padding-bottom: 40vh; /* Maintain dynamic spacing */
   }
   
-  /* Small Mobile Responsive */
-  @media (max-width: 480px) {
-    .modal-header {
-      padding: 12px;
-    }
-    
-    .progress-indicator {
-      padding: 0 20px;
-    }
-    
-    .left-panel {
-      padding: 15px;
-    }
-    
-    .right-panel {
-      padding: 15px;
-    }
-    
-    .vehicle-showcase h2 {
-      font-size: 24px;
-    }
-    
-    .price-amount {
-      font-size: 32px;
-    }
-    
-    .step-content h3 {
-      font-size: 20px;
-    }
-    
-    .option-card {
-      padding: 15px;
-    }
-    
-    .option-icon {
-      font-size: 32px;
-    }
-    
-    .option-title {
-      font-size: 16px;
-    }
-    
-    .add-on-card {
-      padding: 12px;
-    }
-    
-    .confirmation-step .purchase-summary {
-      padding: 15px;
-    }
-    
-    .next-steps-card {
-      padding: 15px;
-    }
-    
-    .deal-summary h4 {
-      font-size: 16px;
-    }
-    
-    .payment-amount {
-      font-size: 24px;
-    }
+  .right-panel {
+    padding: 15px;
+    max-height: 40vh; /* Slightly larger on smaller screens */
   }
+  
+  /* Adjust spacer for smaller screens */
+  .left-panel::after {
+    height: 40vh;
+  }
+  
+  .vehicle-showcase h2 {
+    font-size: 24px;
+  }
+  
+  .price-amount {
+    font-size: 32px;
+  }
+  
+  .step-content h3 {
+    font-size: 20px;
+  }
+  
+  .option-card {
+    padding: 15px;
+  }
+  
+  .option-icon {
+    font-size: 32px;
+  }
+  
+  .option-title {
+    font-size: 16px;
+  }
+  
+  .add-on-card {
+    padding: 12px;
+  }
+  
+  .confirmation-step .purchase-summary {
+    padding: 15px;
+  }
+  
+  .next-steps-card {
+    padding: 15px;
+  }
+  
+  .deal-summary h4 {
+    font-size: 16px;
+  }
+  
+  .payment-amount {
+    font-size: 24px;
+  }
+}
