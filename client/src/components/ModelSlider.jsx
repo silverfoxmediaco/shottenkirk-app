@@ -147,12 +147,12 @@ const ModelSlider = () => {
             <div className="slide-content">
               <span className="stock-label">Stock #{vehicle.stockNumber}</span>
               <h3>{vehicle.model}</h3>
-              <p className="price-display">
+              <div className="price-display">
                 <span className="sale-price">{vehicle.price}</span>
                 {vehicle.price !== vehicle.msrp && (
                   <span className="original-price">{vehicle.msrp}</span>
                 )}
-              </p>
+              </div>
               <p className="lease-estimate">{vehicle.leasePrice}</p>
               <div className="slide-buttons">
                 <button 
