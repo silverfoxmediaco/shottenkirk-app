@@ -108,10 +108,14 @@
   padding: 1.5rem;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   color: white;
-  text-align: left;
+  text-align: left !important;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: flex-start !important;
+}
+
+.slide-content * {
+  text-align: left !important;
 }
 
 .stock-label {
@@ -124,16 +128,16 @@
   border-radius: 4px;
   display: inline-block;
   margin-bottom: 0.5rem;
-  align-self: flex-start;
 }
 
 .slide-content h3 {
   font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 0;
   color: white;
   line-height: 1.2;
-  text-align: left;
+  text-align: left !important;
+  width: 100%;
 }
 
 .price-display {
@@ -141,8 +145,9 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  text-align: left;
-  justify-content: flex-start;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  width: 100%;
 }
 
 .sale-price {
@@ -160,13 +165,15 @@
 .lease-estimate {
   font-size: 0.9rem;
   color: #ddd;
-  margin-bottom: 1rem;
-  text-align: left;
+  margin: 0 0 1rem 0;
+  text-align: left !important;
+  width: 100%;
 }
 
 .slide-buttons {
   display: flex;
   gap: 0.75rem;
+  width: 100%;
 }
 
 .buy-now,
