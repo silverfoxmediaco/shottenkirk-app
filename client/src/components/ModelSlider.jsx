@@ -2,58 +2,81 @@
 
 import React, { useState, useEffect } from 'react';
 import '../styles/ModelSlider.css';
-
-import whiteRam from '../assets/whiteramdesert.png';
-import whiteJeep from '../assets/whitejeepindesert.png';
-import redCharger from '../assets/redcharger.png';
-import blueCherokee from '../assets/navybluejeepcherokee.png';
-import bluePacifica from '../assets/bluepacifica.png';
-
+import { getVehicleImage } from '../utils/vehicleImages';
 import TestDriveModal from './modals/TestDriveModal';
-import BuyNowModal from './modals/BuyNowModal'; // Add this import
-
-const vehicles = [
-  {
-    image: whiteRam,
-    model: '2025 Ram 1500',
-    price: 'Lease From $689/mo',
-    msrp: '$65,000',
-    id: 'ram-1500'
-  },
-  {
-    image: whiteJeep,
-    model: '2025 Jeep Wrangler',
-    price: 'Lease From $659/mo',
-    msrp: '$55,000',
-    id: 'jeep-wrangler'
-  },
-  {
-    image: redCharger,
-    model: '2025 Dodge Charger',
-    price: 'Lease From $539/mo',
-    msrp: '$45,000',
-    id: 'dodge-charger'
-  },
-  {
-    image: blueCherokee,
-    model: '2025 Jeep Grand Cherokee',
-    price: 'Lease From $499/mo',
-    msrp: '$48,000',
-    id: 'jeep-grand-cherokee'
-  },
-  {
-    image: bluePacifica,
-    model: '2025 Chrysler Pacifica',
-    price: 'Lease From $475/mo',
-    msrp: '$42,000',
-    id: 'chrysler-pacifica'
-  },
-];
+import BuyNowModal from './modals/BuyNowModal';
 
 const ModelSlider = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [buyNowModalOpen, setBuyNowModalOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [featuredVehicles, setFeaturedVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch real inventory vehicles
+  useEffect(() => {
+    fetchFeaturedVehicles();
+  }, []);
+
+  const fetchFeaturedVehicles = async () => {
+    try {
+      const response = await fetch('/api/inventory');
+      const allVehicles = await response.json();
+      
+      // Get 5 random vehicles or all if less than 5
+      const shuffled = [...allVehicles].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, Math.min(5, allVehicles.length));
+      
+      // Transform the data to match what the slider expects
+      const featured = selected.map(vehicle => ({
+        id: vehicle._id,
+        model: vehicle.vehicle,
+        price: vehicle.adPrice || vehicle.msrp,
+        msrp: vehicle.msrp,
+        vin: vehicle.vin,
+        stockNumber: vehicle.stockNumber,
+        image: getVehicleImage(vehicle.vehicle),
+        // Calculate a lease price estimate (rough calculation)
+        leasePrice: calculateLeaseEstimate(vehicle.adPrice || vehicle.msrp)
+      }));
+      
+      setFeaturedVehicles(featured);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching vehicles:', error);
+      setLoading(false);
+      // Fallback to some default vehicles if API fails
+      setFeaturedVehicles(getDefaultVehicles());
+    }
+  };
+
+  // Calculate estimated lease payment (simplified)
+  const calculateLeaseEstimate = (price) => {
+    const numericPrice = parseInt(price.replace(/[$,]/g, ''));
+    // Rough lease calculation: ~1.5% of MSRP per month
+    const leasePayment = Math.round(numericPrice * 0.015 / 10) * 10; // Round to nearest $10
+    return `Lease From $${leasePayment}/mo`;
+  };
+
+  // Fallback vehicles if API fails
+  const getDefaultVehicles = () => [
+    {
+      id: 'default-1',
+      model: '2025 Ram 1500',
+      price: '$65,000',
+      msrp: '$65,000',
+      leasePrice: 'Lease From $689/mo',
+      image: '/images/2025ramrebel.png'
+    },
+    {
+      id: 'default-2',
+      model: '2025 Jeep Wrangler',
+      price: '$55,000',
+      msrp: '$55,000',
+      leasePrice: 'Lease From $659/mo',
+      image: '/images/jeepwilly.png'
+    }
+  ];
 
   // Check if returning from trade-in estimator or credit application
   useEffect(() => {
@@ -82,17 +105,55 @@ const ModelSlider = () => {
     setBuyNowModalOpen(true);
   };
 
+  const handleImageError = (e) => {
+    e.target.src = '/images/sklogoV2300.png';
+  };
+
+  if (loading) {
+    return (
+      <section className="model-slider">
+        <h2 className="slider-title">Explore Our Lineup</h2>
+        <div className="slider-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading featured vehicles...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (featuredVehicles.length === 0) {
+    return (
+      <section className="model-slider">
+        <h2 className="slider-title">Explore Our Lineup</h2>
+        <div className="no-vehicles">
+          <p>No vehicles available at this time.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="model-slider">
       <h2 className="slider-title">Explore Our Lineup</h2>
       <div className="slider-track">
-        {vehicles.map((vehicle, index) => (
-          <div className="slide" key={index}>
-            <img src={vehicle.image} alt={vehicle.model} className="slide-image" />
+        {featuredVehicles.map((vehicle, index) => (
+          <div className="slide" key={vehicle.id}>
+            <img 
+              src={vehicle.image} 
+              alt={vehicle.model} 
+              className="slide-image"
+              onError={handleImageError}
+            />
             <div className="slide-content">
-              <span className="vehicle-label">{vehicle.label}</span>
+              <span className="stock-label">Stock #{vehicle.stockNumber}</span>
               <h3>{vehicle.model}</h3>
-              <p className="price-range">{vehicle.price}</p>
+              <p className="price-display">
+                <span className="sale-price">{vehicle.price}</span>
+                {vehicle.price !== vehicle.msrp && (
+                  <span className="original-price">{vehicle.msrp}</span>
+                )}
+              </p>
+              <p className="lease-estimate">{vehicle.leasePrice}</p>
               <div className="slide-buttons">
                 <button 
                   className="buy-now"
@@ -107,11 +168,22 @@ const ModelSlider = () => {
                   Test Drive
                 </button>
               </div>
-              <span className="swipe-hint">Swipe for more &rarr;</span>
+              {index < featuredVehicles.length - 1 && (
+                <span className="swipe-hint">Swipe for more →</span>
+              )}
             </div>
           </div>
         ))}
       </div>
+
+      {/* Refresh button to get new random vehicles */}
+      <button 
+        className="refresh-featured"
+        onClick={fetchFeaturedVehicles}
+        title="Show different vehicles"
+      >
+        ↻ Show More Vehicles
+      </button>
 
       {/* Test Drive Modal */}
       <TestDriveModal

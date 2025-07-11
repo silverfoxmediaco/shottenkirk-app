@@ -1,144 +1,288 @@
 /* src/styles/ModelSlider.css */
 
 .model-slider {
-    padding: 2rem 1rem;
-    background-color: #fff;
-    text-align: center;
+  padding: 2rem 1rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.slider-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: black;
+}
+
+/* Loading state */
+.slider-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #666;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #1976d2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* No vehicles state */
+.no-vehicles {
+  padding: 3rem;
+  text-align: center;
+  color: #666;
+}
+
+.slider-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 2rem;
+  padding: 0 1rem 1rem;
+  scroll-padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f5f5f5;
+}
+
+.slider-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider-track::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.slider-track::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.slider-track::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.slide {
+  position: relative;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  height: 480px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slide:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: #f5f5f5;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: white;
+  text-align: left;
+}
+
+.stock-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.slide-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+  line-height: 1.2;
+}
+
+.price-display {
+  margin-bottom: 0.25rem;
+}
+
+.sale-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4caf50;
+}
+
+.original-price {
+  font-size: 1rem;
+  color: #ccc;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+}
+
+.lease-estimate {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+}
+
+.slide-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.buy-now,
+.need-financing {
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.buy-now {
+  background-color: #1976d2;
+  color: white;
+}
+
+.buy-now:hover {
+  background-color: #155bb5;
+  transform: translateY(-1px);
+}
+
+.need-financing {
+  background-color: white;
+  color: #333;
+}
+
+.need-financing:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.swipe-hint {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 1rem;
+  display: block;
+  text-align: left;
+  animation: hint-bounce 1.6s infinite;
+}
+
+@keyframes hint-bounce {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* Refresh button */
+.refresh-featured {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.refresh-featured:hover {
+  background-color: #e0e0e0;
+  border-color: #bbb;
+  transform: translateY(-2px);
+}
+
+.refresh-featured:active {
+  transform: translateY(0);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .model-slider {
+    padding: 1rem 0.5rem;
   }
   
   .slider-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    color: black;
-  }
-  
-  .slider-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 2rem;
-    padding: 0 1rem 1rem;
-    scroll-padding: 1rem;
-    -webkit-overflow-scrolling: touch;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   
   .slide {
-    position: relative;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    border-radius: 16px;
-    overflow: hidden;
-    background-color: #000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 600px; /* wide desktop card */
-    height: 480px;
-  }
-  
-  .slide-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    width: calc(100vw - 40px);
+    height: 420px;
+    margin: 0 10px;
   }
   
   .slide-content {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 1.5rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
-    color: white;
-    text-align: left;
-  }
-  
-  .vehicle-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    font-weight: 500;
-    opacity: 0.85;
-    margin-bottom: 0.5rem;
-    display: inline-block;
+    padding: 1.25rem;
   }
   
   .slide-content h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: white;
+    font-size: 1.2rem;
   }
   
-  .price-range {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: #ccc;
+  .price-display {
+    margin-bottom: 0.5rem;
+  }
+  
+  .sale-price {
+    font-size: 1.1rem;
   }
   
   .slide-buttons {
-    display: flex;
-    gap: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
   .buy-now,
   .need-financing {
-    padding: 0.5rem 1.25rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    transition: background-color 0.25s ease;
+    width: 100%;
+    padding: 0.75rem;
   }
   
-  .buy-now {
-    background-color: #1976d2;
-    color: white;
-  }
-  
-  .buy-now:hover {
-    background-color: #155bb5;
-  }
-  
-  .need-financing {
-    background-color: white;
-    color: #333;
-  }
-  
-  .need-financing:hover {
-    background-color: #e0e0e0;
-  }
-
-  .swipe-hint {
+  .refresh-featured {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
-    color: #ccc;
-    margin-top: 1rem;
-    display: block;
-    text-align: left;
-    animation: hint-bounce 1.6s infinite;
   }
-  
-  @keyframes hint-bounce {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(6px); }
-    100% { transform: translateX(0); }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slide {
+    width: 450px;
+    height: 380px;
   }
-  
-  
-  @media (max-width: 768px) {
-    .model-slider {
-        padding: 0rem 1rem;
-        background-color: #fff;
-        text-align: center;
-      }
-    
-    .slide {
-      width: calc(100vw - 60px); /* full width minus 30px margin on each side */
-      height: 420px;
-      margin: 0 15px;
-    }
-  
-    .slide-buttons {
-      flex-direction: column;
-    }
-  }
-  
+}

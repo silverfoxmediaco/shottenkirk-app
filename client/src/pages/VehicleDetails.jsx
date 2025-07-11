@@ -3,6 +3,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getVehicleImage } from '../utils/vehicleImages';
 import TestDriveModal from '../components/modals/TestDriveModal';
+import BuyNowModal from '../components/modals/BuyNowModal';
 import '../styles/VehicleDetails.css';
 
 const VehicleDetails = () => {
@@ -12,6 +13,7 @@ const VehicleDetails = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [buyNowModalOpen, setBuyNowModalOpen] = useState(false);
   const [actionLoading, setActionLoading] = useState({
     availability: false,
     financing: false,
@@ -123,24 +125,7 @@ const VehicleDetails = () => {
   };
 
   const handleBuyNow = async () => {
-    setActionLoading(prev => ({ ...prev, buyNow: true }));
-    try {
-      // In production, this would initiate the purchase process
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Navigate to purchase/checkout page
-      navigate('/purchase', { 
-        state: { 
-          vehicleId: vehicle._id,
-          vehicleModel: vehicle.vehicle,
-          vehiclePrice: vehicle.adPrice || vehicle.msrp,
-          vin: vehicle.vin
-        } 
-      });
-    } catch (error) {
-      console.error('Error initiating purchase:', error);
-    } finally {
-      setActionLoading(prev => ({ ...prev, buyNow: false }));
-    }
+    setBuyNowModalOpen(true);
   };
 
   const handleShare = () => {
@@ -189,10 +174,10 @@ const VehicleDetails = () => {
         </button>
         <div className="header-actions">
           <button className="icon-button" onClick={handleShare} title="Share">
-            📤 Share
+            Share
           </button>
           <button className="icon-button" onClick={handlePrint} title="Print">
-            🖨️ Print
+            Print
           </button>
         </div>
       </div>
@@ -288,26 +273,25 @@ const VehicleDetails = () => {
             <button 
               className="btn-primary large" 
               onClick={handleBuyNow}
-              disabled={actionLoading.buyNow}
             >
-              {actionLoading.buyNow ? 'Processing...' : '🛒 Buy Now'}
+              Buy Now
             </button>
             <button className="btn-primary large" onClick={openTestDriveModal}>
-              🚗 Schedule Test Drive
+              Schedule Test Drive
             </button>
             <button 
               className="btn-secondary large" 
               onClick={handleCheckAvailability}
               disabled={actionLoading.availability}
             >
-              {actionLoading.availability ? 'Checking...' : '✓ Check Availability'}
+              {actionLoading.availability ? 'Checking...' : 'Check Availability'}
             </button>
             <button 
               className="btn-tertiary large" 
               onClick={handleGetFinancing}
               disabled={actionLoading.financing}
             >
-              {actionLoading.financing ? 'Loading...' : '💰 Get Financing'}
+              {actionLoading.financing ? 'Loading...' : 'Get Financing'}
             </button>
           </div>
 
@@ -317,17 +301,17 @@ const VehicleDetails = () => {
             <p>Our sales team is here to help you find your perfect vehicle.</p>
             <div className="contact-methods">
               <a href={`tel:${process.env.REACT_APP_PHONE || '+1234567890'}`} className="contact-method">
-                📞 Call Us
+                Call Us
               </a>
               <a href="#chat" className="contact-method" onClick={(e) => {
                 e.preventDefault();
                 // Implement chat functionality
                 alert('Chat feature coming soon!');
               }}>
-                💬 Chat Now
+                Chat Now
               </a>
               <a href={`mailto:sales@shottenkirk.com?subject=Inquiry about ${vehicle.vehicle}`} className="contact-method">
-                ✉️ Email Us
+                Email Us
               </a>
             </div>
           </div>
@@ -372,6 +356,20 @@ const VehicleDetails = () => {
         vehicle={{
           id: vehicle._id,
           model: vehicle.vehicle
+        }}
+      />
+
+      {/* Buy Now Modal */}
+      <BuyNowModal
+        isOpen={buyNowModalOpen}
+        onClose={() => setBuyNowModalOpen(false)}
+        vehicle={{
+          id: vehicle._id,
+          model: vehicle.vehicle,
+          price: vehicle.adPrice || vehicle.msrp,
+          msrp: vehicle.msrp,
+          vin: vehicle.vin,
+          stockNumber: vehicle.stockNumber
         }}
       />
     </div>
