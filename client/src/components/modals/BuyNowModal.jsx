@@ -349,10 +349,11 @@ const BuyNowModal = ({ isOpen, onClose, vehicle }) => {
           className={`option-card ${dealData.tradeIn.hasTradeIn === true ? 'selected' : ''}`}
           onClick={() => {
             setDealData(prev => ({ ...prev, tradeIn: { ...prev.tradeIn, hasTradeIn: true }}));
-            // Store modal state and redirect to trade-in estimator
+            // Store modal state and redirect to finance page with trade-in tab
             sessionStorage.setItem('buyNowState', JSON.stringify({ ...dealData, currentStep: 'trade-in' }));
             sessionStorage.setItem('buyNowVehicle', JSON.stringify(vehicle));
-            navigate('/trade-in-estimator');
+            sessionStorage.setItem('openTradeInTab', 'true'); // Add this to trigger the tab
+            navigate('/finance'); // Navigate to finance page instead
             onClose();
           }}
         >
@@ -436,9 +437,10 @@ const BuyNowModal = ({ isOpen, onClose, vehicle }) => {
             <button 
               className="pre-approval-btn"
               onClick={() => {
-                // Redirect to credit pre-qual or show inline form
+                // Store modal state and redirect to finance page with pre-qualify tab
                 sessionStorage.setItem('buyNowState', JSON.stringify({ ...dealData, currentStep: 'financing' }));
-                navigate('/credit-prequal');
+                sessionStorage.setItem('openPreQualifyTab', 'true');
+                navigate('/finance');
                 onClose();
               }}
             >
