@@ -150,7 +150,7 @@
   width: 100%;
 }
 
-.sale-price {
+/* .sale-price {
   font-size: 1.5rem;
   font-weight: 700;
   color: #d32f2f;
@@ -160,7 +160,7 @@
   font-size: 1.1rem;
   color: #999;
   text-decoration: line-through;
-}
+} */
 
 .lease-estimate {
   font-size: 0.9rem;
