@@ -108,7 +108,7 @@
   padding: 1.5rem;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   color: white;
-  text-align: left !important;
+  text-align: left;
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -139,7 +139,7 @@
   width: 100%;
 }
 
-.price-display {
+/*.price-display {
   margin-bottom: 0.25rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -159,7 +159,7 @@
   font-size: 1.1rem;
   color: #999;
   text-decoration: line-through;
-}
+}*/
 
 .lease-estimate {
   font-size: 0.9rem;
