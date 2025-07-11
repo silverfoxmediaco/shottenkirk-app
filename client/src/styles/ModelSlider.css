@@ -142,15 +142,16 @@
 
 .price-display {
   margin-bottom: 0.25rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 1rem;
   text-align: left !important;
-  justify-content: flex-start !important;
+  justify-items: start;
   width: 100%;
 }
 
-/* .sale-price {
+.sale-price {
   font-size: 1.5rem;
   font-weight: 700;
   color: #d32f2f;
@@ -160,7 +161,7 @@
   font-size: 1.1rem;
   color: #999;
   text-decoration: line-through;
-} */
+}
 
 .lease-estimate {
   font-size: 0.9rem;
