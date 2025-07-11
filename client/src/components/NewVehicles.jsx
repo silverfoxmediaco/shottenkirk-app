@@ -1,7 +1,6 @@
 // src/components/NewVehicles.jsx
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { debounce } from 'lodash';
 import '../styles/NewVehicles.css';
 import { getVehicleImage } from '../utils/vehicleImages';
 import TestDriveModal from './modals/TestDriveModal';
@@ -25,6 +24,19 @@ const NewVehicles = () => {
     '40to60': { min: 40000, max: 60000 },
     '60to80': { min: 60000, max: 80000 },
     over80: { min: 80000, max: Infinity }
+  };
+
+  // Custom debounce function
+  const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
   };
 
   useEffect(() => {
