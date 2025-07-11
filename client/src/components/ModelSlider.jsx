@@ -152,8 +152,8 @@ const ModelSlider = () => {
                 {vehicle.price !== vehicle.msrp && (
                   <span className="original-price">{vehicle.msrp}</span>
                 )}
-              </div> */}
-              <p className="lease-estimate">{vehicle.leasePrice}</p>
+              </div>
+              <p className="lease-estimate">{vehicle.leasePrice}</p>*/}
               <div className="slide-buttons">
                 <button 
                   className="buy-now"
