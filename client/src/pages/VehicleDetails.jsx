@@ -1,5 +1,5 @@
 // client/src/pages/VehicleDetails.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getVehicleImage } from '../utils/vehicleImages';
 import TestDriveModal from '../components/modals/TestDriveModal';
@@ -12,12 +12,14 @@ const VehicleDetails = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [actionLoading, setActionLoading] = useState({
+    availability: false,
+    financing: false,
+    buyNow: false
+  });
 
-  useEffect(() => {
-    fetchVehicleDetails();
-  }, [id]);
-
-  const fetchVehicleDetails = async () => {
+  // Fetch vehicle details
+  const fetchVehicleDetails = useCallback(async () => {
     try {
       const response = await fetch(`/api/inventory/${id}`);
       if (!response.ok) throw new Error('Vehicle not found');
@@ -28,7 +30,11 @@ const VehicleDetails = () => {
       console.error('Error fetching vehicle details:', error);
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchVehicleDetails();
+  }, [fetchVehicleDetails]);
 
   // Mock additional images - in production these would come from the database
   const getAdditionalImages = (vehicleName) => {
@@ -39,6 +45,121 @@ const VehicleDetails = () => {
       mainImage, // Placeholder - would be interior shot
       mainImage, // Placeholder - would be engine shot
     ];
+  };
+
+  const images = vehicle ? getAdditionalImages(vehicle.vehicle) : [];
+
+  // Preload images for better performance
+  useEffect(() => {
+    if (images.length > 0) {
+      images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+  }, [images]);
+
+  // Keyboard navigation for gallery
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft' && selectedImageIndex > 0) {
+        setSelectedImageIndex(selectedImageIndex - 1);
+      } else if (e.key === 'ArrowRight' && selectedImageIndex < images.length - 1) {
+        setSelectedImageIndex(selectedImageIndex + 1);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [selectedImageIndex, images.length]);
+
+  // Memoized savings calculation
+  const savings = useMemo(() => {
+    if (!vehicle) return 0;
+    const msrp = parseInt(vehicle?.msrp?.replace(/[$,]/g, '') || '0');
+    const salePrice = parseInt(vehicle?.adPrice?.replace(/[$,]/g, '') || '0') || msrp;
+    return msrp - salePrice;
+  }, [vehicle?.msrp, vehicle?.adPrice]);
+
+  // Handler functions
+  const handleImageError = (e) => {
+    e.target.src = '/images/sklogoV2300.png';
+  };
+
+  const openTestDriveModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCheckAvailability = async () => {
+    setActionLoading(prev => ({ ...prev, availability: true }));
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Navigate to contact form with vehicle info
+      navigate('/contact', { 
+        state: { 
+          vehicle: vehicle.vehicle, 
+          vin: vehicle.vin,
+          subject: 'Vehicle Availability Inquiry'
+        } 
+      });
+    } catch (error) {
+      console.error('Error checking availability:', error);
+    } finally {
+      setActionLoading(prev => ({ ...prev, availability: false }));
+    }
+  };
+
+  const handleGetFinancing = () => {
+    setActionLoading(prev => ({ ...prev, financing: true }));
+    // Navigate to finance application with vehicle info
+    navigate('/finance/application', { 
+      state: { 
+        vehicleId: vehicle._id,
+        vehicleModel: vehicle.vehicle,
+        vehiclePrice: vehicle.adPrice || vehicle.msrp
+      } 
+    });
+  };
+
+  const handleBuyNow = async () => {
+    setActionLoading(prev => ({ ...prev, buyNow: true }));
+    try {
+      // In production, this would initiate the purchase process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Navigate to purchase/checkout page
+      navigate('/purchase', { 
+        state: { 
+          vehicleId: vehicle._id,
+          vehicleModel: vehicle.vehicle,
+          vehiclePrice: vehicle.adPrice || vehicle.msrp,
+          vin: vehicle.vin
+        } 
+      });
+    } catch (error) {
+      console.error('Error initiating purchase:', error);
+    } finally {
+      setActionLoading(prev => ({ ...prev, buyNow: false }));
+    }
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: vehicle.vehicle,
+        text: `Check out this ${vehicle.vehicle} at Shottenkirk!`,
+        url: window.location.href
+      }).catch(err => console.log('Error sharing:', err));
+    } else {
+      // Fallback to copy URL
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => alert('Link copied to clipboard!'))
+        .catch(err => console.error('Error copying to clipboard:', err));
+    }
+  };
+
+  const handlePrint = () => {
+    window.print();
   };
 
   if (loading) {
@@ -59,22 +180,6 @@ const VehicleDetails = () => {
     );
   }
 
-  const images = getAdditionalImages(vehicle.vehicle);
-
-  const handleImageError = (e) => {
-    e.target.src = '/images/sklogoV2300.png';
-  };
-
-  const openTestDriveModal = () => {
-    setModalOpen(true);
-  };
-
-  const calculateSavings = () => {
-    const msrp = parseInt(vehicle.msrp.replace(/[$,]/g, ''));
-    const salePrice = vehicle.adPrice ? parseInt(vehicle.adPrice.replace(/[$,]/g, '')) : msrp;
-    return msrp - salePrice;
-  };
-
   return (
     <div className="vehicle-details-container">
       {/* Header with back button */}
@@ -82,6 +187,14 @@ const VehicleDetails = () => {
         <button className="back-button" onClick={() => navigate('/new-vehicles')}>
           ← Back to Inventory
         </button>
+        <div className="header-actions">
+          <button className="icon-button" onClick={handleShare} title="Share">
+            📤 Share
+          </button>
+          <button className="icon-button" onClick={handlePrint} title="Print">
+            🖨️ Print
+          </button>
+        </div>
       </div>
 
       {/* Main content */}
@@ -109,6 +222,7 @@ const VehicleDetails = () => {
               </div>
             ))}
           </div>
+          <p className="gallery-hint">Use arrow keys to navigate images</p>
         </div>
 
         {/* Right side - Details */}
@@ -130,9 +244,9 @@ const VehicleDetails = () => {
               )}
             </div>
             
-            {vehicle.adPrice && calculateSavings() > 0 && (
+            {vehicle.adPrice && savings > 0 && (
               <div className="savings-banner">
-                You Save: ${calculateSavings().toLocaleString()}!
+                You Save: ${savings.toLocaleString()}!
               </div>
             )}
 
@@ -171,14 +285,29 @@ const VehicleDetails = () => {
 
           {/* Action Buttons */}
           <div className="action-buttons">
+            <button 
+              className="btn-primary large" 
+              onClick={handleBuyNow}
+              disabled={actionLoading.buyNow}
+            >
+              {actionLoading.buyNow ? 'Processing...' : '🛒 Buy Now'}
+            </button>
             <button className="btn-primary large" onClick={openTestDriveModal}>
-              Schedule Test Drive
+              🚗 Schedule Test Drive
             </button>
-            <button className="btn-secondary large">
-              Check Availability
+            <button 
+              className="btn-secondary large" 
+              onClick={handleCheckAvailability}
+              disabled={actionLoading.availability}
+            >
+              {actionLoading.availability ? 'Checking...' : '✓ Check Availability'}
             </button>
-            <button className="btn-tertiary large">
-              Get Financing
+            <button 
+              className="btn-tertiary large" 
+              onClick={handleGetFinancing}
+              disabled={actionLoading.financing}
+            >
+              {actionLoading.financing ? 'Loading...' : '💰 Get Financing'}
             </button>
           </div>
 
@@ -187,13 +316,17 @@ const VehicleDetails = () => {
             <h3>Need More Information?</h3>
             <p>Our sales team is here to help you find your perfect vehicle.</p>
             <div className="contact-methods">
-              <a href="tel:+1234567890" className="contact-method">
+              <a href={`tel:${process.env.REACT_APP_PHONE || '+1234567890'}`} className="contact-method">
                 📞 Call Us
               </a>
-              <a href="#" className="contact-method">
+              <a href="#chat" className="contact-method" onClick={(e) => {
+                e.preventDefault();
+                // Implement chat functionality
+                alert('Chat feature coming soon!');
+              }}>
                 💬 Chat Now
               </a>
-              <a href="mailto:sales@shottenkirk.com" className="contact-method">
+              <a href={`mailto:sales@shottenkirk.com?subject=Inquiry about ${vehicle.vehicle}`} className="contact-method">
                 ✉️ Email Us
               </a>
             </div>

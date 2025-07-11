@@ -1,27 +1,35 @@
 // src/components/NewVehicles.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { debounce } from 'lodash';
 import '../styles/NewVehicles.css';
 import { getVehicleImage } from '../utils/vehicleImages';
+import TestDriveModal from './modals/TestDriveModal';
 
 const NewVehicles = () => {
   const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
-  const [filteredVehicles, setFilteredVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     class: 'all',
     priceRange: 'all',
     search: ''
   });
+  const [searchInput, setSearchInput] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
+
+  // Price range configuration
+  const priceRanges = {
+    under40: { min: 0, max: 40000 },
+    '40to60': { min: 40000, max: 60000 },
+    '60to80': { min: 60000, max: 80000 },
+    over80: { min: 80000, max: Infinity }
+  };
 
   useEffect(() => {
     fetchVehicles();
   }, []);
-
-  useEffect(() => {
-    applyFilters();
-  }, [vehicles, filters]);
 
   const fetchVehicles = async () => {
     try {
@@ -29,7 +37,6 @@ const NewVehicles = () => {
       const response = await fetch('/api/inventory');
       const data = await response.json();
       setVehicles(data);
-      setFilteredVehicles(data);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching vehicles:', error);
@@ -37,42 +44,19 @@ const NewVehicles = () => {
     }
   };
 
-  const applyFilters = () => {
-    let filtered = [...vehicles];
+  // Debounced search handler
+  const debouncedSearch = useCallback(
+    debounce((value) => {
+      setFilters(prev => ({ ...prev, search: value }));
+    }, 300),
+    []
+  );
 
-    // Filter by class
-    if (filters.class !== 'all') {
-      filtered = filtered.filter(vehicle => vehicle.class === filters.class);
-    }
-
-    // Filter by price range
-    if (filters.priceRange !== 'all') {
-      filtered = filtered.filter(vehicle => {
-        const price = parseInt(vehicle.adPrice.replace(/[$,]/g, ''));
-        switch (filters.priceRange) {
-          case 'under40':
-            return price < 40000;
-          case '40to60':
-            return price >= 40000 && price < 60000;
-          case '60to80':
-            return price >= 60000 && price < 80000;
-          case 'over80':
-            return price >= 80000;
-          default:
-            return true;
-        }
-      });
-    }
-
-    // Filter by search term
-    if (filters.search) {
-      filtered = filtered.filter(vehicle => 
-        vehicle.vehicle.toLowerCase().includes(filters.search.toLowerCase()) ||
-        vehicle.stockNumber.toLowerCase().includes(filters.search.toLowerCase())
-      );
-    }
-
-    setFilteredVehicles(filtered);
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+    debouncedSearch(value);
   };
 
   const handleFilterChange = (filterType, value) => {
@@ -85,6 +69,51 @@ const NewVehicles = () => {
   const getUniqueClasses = () => {
     const classes = [...new Set(vehicles.map(v => v.class))];
     return classes.sort();
+  };
+
+  // Memoized filtered vehicles for better performance
+  const filteredVehicles = useMemo(() => {
+    let filtered = [...vehicles];
+
+    // Filter by class
+    if (filters.class !== 'all') {
+      filtered = filtered.filter(vehicle => vehicle.class === filters.class);
+    }
+
+    // Filter by price range
+    if (filters.priceRange !== 'all') {
+      filtered = filtered.filter(vehicle => {
+        // Safer price parsing
+        const price = parseInt(vehicle.adPrice?.replace(/[$,]/g, '') || '0');
+        const { min, max } = priceRanges[filters.priceRange] || { min: 0, max: Infinity };
+        return price >= min && price < max;
+      });
+    }
+
+    // Filter by search term
+    if (filters.search) {
+      filtered = filtered.filter(vehicle => 
+        vehicle.vehicle.toLowerCase().includes(filters.search.toLowerCase()) ||
+        vehicle.stockNumber.toLowerCase().includes(filters.search.toLowerCase())
+      );
+    }
+
+    return filtered;
+  }, [vehicles, filters]);
+
+  // Handle clear filters
+  const handleClearFilters = () => {
+    setFilters({ class: 'all', priceRange: 'all', search: '' });
+    setSearchInput('');
+  };
+
+  // Open test drive modal
+  const openTestDriveModal = (vehicle) => {
+    setSelectedVehicle({
+      id: vehicle._id,
+      model: vehicle.vehicle
+    });
+    setModalOpen(true);
   };
 
   if (loading) {
@@ -109,8 +138,8 @@ const NewVehicles = () => {
           <input
             type="text"
             placeholder="Search by model or stock number..."
-            value={filters.search}
-            onChange={(e) => handleFilterChange('search', e.target.value)}
+            value={searchInput}
+            onChange={handleSearchChange}
           />
         </div>
 
@@ -143,7 +172,7 @@ const NewVehicles = () => {
 
         <button 
           className="clear-filters"
-          onClick={() => setFilters({ class: 'all', priceRange: 'all', search: '' })}
+          onClick={handleClearFilters}
         >
           Clear Filters
         </button>
@@ -153,7 +182,7 @@ const NewVehicles = () => {
         {filteredVehicles.length === 0 ? (
           <div className="no-results">
             <p>No vehicles match your search criteria.</p>
-            <button onClick={() => setFilters({ class: 'all', priceRange: 'all', search: '' })}>
+            <button onClick={handleClearFilters}>
               Clear Filters
             </button>
           </div>
@@ -204,13 +233,20 @@ const NewVehicles = () => {
 
                 <div className="vehicle-actions">
                   <button className="btn-primary" onClick={() => navigate(`/vehicle/${vehicle._id}`)}>View Details</button>
-                  <button className="btn-secondary">Schedule Test Drive</button>
+                  <button className="btn-secondary" onClick={() => openTestDriveModal(vehicle)}>Schedule Test Drive</button>
                 </div>
               </div>
             </div>
           ))
         )}
       </div>
+
+      {/* Test Drive Modal */}
+      <TestDriveModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        vehicle={selectedVehicle}
+      />
     </div>
   );
 };
