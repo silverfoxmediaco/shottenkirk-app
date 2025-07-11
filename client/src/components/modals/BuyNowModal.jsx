@@ -325,6 +325,9 @@ const BuyNowModal = ({ isOpen, onClose, vehicle }) => {
     <div className="step-content overview-step">
       <div className="vehicle-showcase">
         <h2>{vehicle?.model}</h2>
+        {vehicle?.stockNumber && (
+          <p className="vehicle-stock">Stock #{vehicle.stockNumber}</p>
+        )}
         <div className="price-display">
           <span className="price-label">Starting at</span>
           <span className="price-amount">${dealData.vehicle?.price?.toLocaleString()}</span>
@@ -826,10 +829,18 @@ const BuyNowModal = ({ isOpen, onClose, vehicle }) => {
             <span className="label">Vehicle:</span>
             <span className="value">{vehicle?.model}</span>
           </div>
-          <div className="summary-item">
-            <span className="label">Stock #:</span>
-            <span className="value">{vehicle?.id}</span>
-          </div>
+          {vehicle?.stockNumber && (
+            <div className="summary-item">
+              <span className="label">Stock #:</span>
+              <span className="value">{vehicle.stockNumber}</span>
+            </div>
+          )}
+          {vehicle?.vin && (
+            <div className="summary-item">
+              <span className="label">VIN:</span>
+              <span className="value">{vehicle.vin}</span>
+            </div>
+          )}
         </div>
 
         <div className="summary-section">

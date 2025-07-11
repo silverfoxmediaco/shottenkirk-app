@@ -172,14 +172,6 @@ const VehicleDetails = () => {
         <button className="back-button" onClick={() => navigate('/new-vehicles')}>
           ← Back to Inventory
         </button>
-        <div className="header-actions">
-          <button className="icon-button" onClick={handleShare} title="Share">
-            Share
-          </button>
-          <button className="icon-button" onClick={handlePrint} title="Print">
-            Print
-          </button>
-        </div>
       </div>
 
       {/* Main content */}
@@ -292,6 +284,16 @@ const VehicleDetails = () => {
               disabled={actionLoading.financing}
             >
               {actionLoading.financing ? 'Loading...' : 'Get Financing'}
+            </button>
+          </div>
+
+          {/* Additional Actions */}
+          <div className="additional-actions">
+            <button className="btn-secondary large" onClick={handleShare}>
+              Share This Vehicle
+            </button>
+            <button className="btn-secondary large" onClick={handlePrint}>
+              Print Details
             </button>
           </div>
 
