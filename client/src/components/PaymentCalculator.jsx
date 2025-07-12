@@ -1,17 +1,26 @@
 // client/src/components/PaymentCalculator.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/PaymentCalculator.css';
 
 const PaymentCalculator = () => {
+  // Store display values (formatted)
   const [formData, setFormData] = useState({
-    vehiclePrice: 35000,
-    downPayment: 5000,
-    tradeInValue: 0,
+    vehiclePrice: '35,000',
+    downPayment: '5,000',
+    tradeInValue: '0',
     interestRate: 5.9,
     loanTerm: 60,
     salesTax: 6.25,
     includeFeesAndTaxes: true,
+    estimatedFees: '500'
+  });
+
+  // Store raw numeric values for calculations
+  const [rawValues, setRawValues] = useState({
+    vehiclePrice: 35000,
+    downPayment: 5000,
+    tradeInValue: 0,
     estimatedFees: 500
   });
 
@@ -39,27 +48,29 @@ const PaymentCalculator = () => {
   // Calculate payment whenever form data changes
   useEffect(() => {
     calculatePayment();
-  }, [formData]);
+  }, [rawValues, formData.interestRate, formData.loanTerm, formData.salesTax, formData.includeFeesAndTaxes]);
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
-    let processedValue = type === 'checkbox' ? checked : value;
     
-    // Remove commas and dollar signs for number inputs
-    if (type === 'number' || type === 'text') {
-      processedValue = value.replace(/[$,]/g, '');
+    if (type === 'checkbox') {
+      setFormData(prev => ({ ...prev, [name]: checked }));
+    } else if (['vehiclePrice', 'downPayment', 'tradeInValue', 'estimatedFees'].includes(name)) {
+      // For currency inputs, store the raw value
+      const numericValue = parseInt(value.replace(/[$,]/g, '') || '0');
+      setRawValues(prev => ({ ...prev, [name]: numericValue }));
+      // Store the display value as-is
+      setFormData(prev => ({ ...prev, [name]: value }));
+    } else {
+      // For other inputs (interest rate, loan term, etc.)
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
-
-    setFormData(prev => ({
-      ...prev,
-      [name]: processedValue
-    }));
 
     // Clear error for this field
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
-  };
+  }, [errors]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
@@ -74,22 +85,31 @@ const PaymentCalculator = () => {
     return new Intl.NumberFormat('en-US').format(num);
   };
 
+  // Format currency fields on blur
+  const handleCurrencyBlur = useCallback((e) => {
+    const { name, value } = e.target;
+    const numericValue = parseInt(value.replace(/[$,]/g, '') || '0');
+    const formatted = formatNumber(numericValue);
+    setFormData(prev => ({ ...prev, [name]: formatted }));
+  }, []);
+
   const validateForm = () => {
     const newErrors = {};
     
-    if (formData.vehiclePrice <= 0) {
+    if (rawValues.vehiclePrice <= 0) {
       newErrors.vehiclePrice = 'Vehicle price must be greater than 0';
     }
     
-    if (formData.downPayment < 0) {
+    if (rawValues.downPayment < 0) {
       newErrors.downPayment = 'Down payment cannot be negative';
     }
     
-    if (formData.downPayment >= formData.vehiclePrice) {
+    if (rawValues.downPayment >= rawValues.vehiclePrice) {
       newErrors.downPayment = 'Down payment must be less than vehicle price';
     }
     
-    if (formData.interestRate < 0 || formData.interestRate > 30) {
+    const interestRate = parseFloat(formData.interestRate);
+    if (interestRate < 0 || interestRate > 30) {
       newErrors.interestRate = 'Interest rate must be between 0% and 30%';
     }
     
@@ -100,13 +120,13 @@ const PaymentCalculator = () => {
   const calculatePayment = () => {
     if (!validateForm()) return;
 
-    const price = parseFloat(formData.vehiclePrice) || 0;
-    const down = parseFloat(formData.downPayment) || 0;
-    const tradeIn = parseFloat(formData.tradeInValue) || 0;
+    const price = rawValues.vehiclePrice;
+    const down = rawValues.downPayment;
+    const tradeIn = rawValues.tradeInValue;
     const rate = parseFloat(formData.interestRate) || 0;
     const term = parseInt(formData.loanTerm) || 60;
     const taxRate = parseFloat(formData.salesTax) || 0;
-    const fees = formData.includeFeesAndTaxes ? parseFloat(formData.estimatedFees) || 0 : 0;
+    const fees = formData.includeFeesAndTaxes ? rawValues.estimatedFees : 0;
 
     // Calculate tax amount
     const taxableAmount = price - tradeIn;
@@ -157,16 +177,22 @@ const PaymentCalculator = () => {
 
   const handleReset = () => {
     setFormData({
-      vehiclePrice: 35000,
-      downPayment: 5000,
-      tradeInValue: 0,
+      vehiclePrice: '35,000',
+      downPayment: '5,000',
+      tradeInValue: '0',
       interestRate: 5.9,
       loanTerm: 60,
       salesTax: 6.25,
       includeFeesAndTaxes: true,
+      estimatedFees: '500'
+    });
+    setRawValues({
+      vehiclePrice: 35000,
+      downPayment: 5000,
+      tradeInValue: 0,
       estimatedFees: 500
     });
-    setShowBreakdown = false;
+    setShowBreakdown(false);
   };
 
   return (
@@ -183,8 +209,9 @@ const PaymentCalculator = () => {
                 type="text"
                 id="vehiclePrice"
                 name="vehiclePrice"
-                value={formatNumber(formData.vehiclePrice)}
+                value={formData.vehiclePrice}
                 onChange={handleChange}
+                onBlur={handleCurrencyBlur}
                 className={errors.vehiclePrice ? 'error' : ''}
               />
             </div>
@@ -199,14 +226,15 @@ const PaymentCalculator = () => {
                 type="text"
                 id="downPayment"
                 name="downPayment"
-                value={formatNumber(formData.downPayment)}
+                value={formData.downPayment}
                 onChange={handleChange}
+                onBlur={handleCurrencyBlur}
                 className={errors.downPayment ? 'error' : ''}
               />
             </div>
             {errors.downPayment && <span className="error-message">{errors.downPayment}</span>}
             <span className="field-hint">
-              {((formData.downPayment / formData.vehiclePrice) * 100).toFixed(1)}% of vehicle price
+              {((rawValues.downPayment / rawValues.vehiclePrice) * 100).toFixed(1)}% of vehicle price
             </span>
           </div>
 
@@ -218,8 +246,9 @@ const PaymentCalculator = () => {
                 type="text"
                 id="tradeInValue"
                 name="tradeInValue"
-                value={formatNumber(formData.tradeInValue)}
+                value={formData.tradeInValue}
                 onChange={handleChange}
+                onBlur={handleCurrencyBlur}
               />
             </div>
           </div>
@@ -300,8 +329,9 @@ const PaymentCalculator = () => {
                     type="text"
                     id="estimatedFees"
                     name="estimatedFees"
-                    value={formatNumber(formData.estimatedFees)}
+                    value={formData.estimatedFees}
                     onChange={handleChange}
+                    onBlur={handleCurrencyBlur}
                   />
                 </div>
                 <span className="field-hint">Title, registration, doc fees, etc.</span>
@@ -333,16 +363,16 @@ const PaymentCalculator = () => {
           <div className="results-summary">
             <div className="summary-row">
               <span>Vehicle Price:</span>
-              <span>{formatCurrency(formData.vehiclePrice)}</span>
+              <span>{formatCurrency(rawValues.vehiclePrice)}</span>
             </div>
             <div className="summary-row">
               <span>Down Payment:</span>
-              <span>-{formatCurrency(formData.downPayment)}</span>
+              <span>-{formatCurrency(rawValues.downPayment)}</span>
             </div>
-            {formData.tradeInValue > 0 && (
+            {rawValues.tradeInValue > 0 && (
               <div className="summary-row">
                 <span>Trade-In Value:</span>
-                <span>-{formatCurrency(formData.tradeInValue)}</span>
+                <span>-{formatCurrency(rawValues.tradeInValue)}</span>
               </div>
             )}
             {formData.includeFeesAndTaxes && (
@@ -353,7 +383,7 @@ const PaymentCalculator = () => {
                 </div>
                 <div className="summary-row">
                   <span>Fees:</span>
-                  <span>+{formatCurrency(formData.estimatedFees)}</span>
+                  <span>+{formatCurrency(rawValues.estimatedFees)}</span>
                 </div>
               </>
             )}

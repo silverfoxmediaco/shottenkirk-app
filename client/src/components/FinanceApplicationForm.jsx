@@ -1,6 +1,6 @@
 // client/src/components/FinanceApplicationForm.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/FinanceApplicationForm.css';
 
@@ -76,7 +76,7 @@ const FinanceApplicationForm = () => {
     'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'
   ];
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -86,7 +86,7 @@ const FinanceApplicationForm = () => {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
-  };
+  }, [errors]);
 
   const formatPhone = (value) => {
     const phone = value.replace(/\D/g, '');
@@ -102,15 +102,16 @@ const FinanceApplicationForm = () => {
     return `${ssn.slice(0, 3)}-${ssn.slice(3, 5)}-${ssn.slice(5, 9)}`;
   };
 
-  const handlePhoneChange = (e) => {
-    const formatted = formatPhone(e.target.value);
-    setFormData(prev => ({ ...prev, [e.target.name]: formatted }));
-  };
+  const handlePhoneBlur = useCallback((e) => {
+    const { name, value } = e.target;
+    const formatted = formatPhone(value);
+    setFormData(prev => ({ ...prev, [name]: formatted }));
+  }, []);
 
-  const handleSSNChange = (e) => {
+  const handleSSNBlur = useCallback((e) => {
     const formatted = formatSSN(e.target.value);
     setFormData(prev => ({ ...prev, ssn: formatted }));
-  };
+  }, []);
 
   const validateForm = () => {
     const newErrors = {};
@@ -329,7 +330,8 @@ const FinanceApplicationForm = () => {
                 id="phone"
                 name="phone"
                 value={formData.phone}
-                onChange={handlePhoneChange}
+                onChange={handleChange}
+                onBlur={handlePhoneBlur}
                 className={errors.phone ? 'error' : ''}
                 placeholder="(555) 555-5555"
               />
@@ -356,9 +358,11 @@ const FinanceApplicationForm = () => {
                 id="ssn"
                 name="ssn"
                 value={formData.ssn}
-                onChange={handleSSNChange}
+                onChange={handleChange}
+                onBlur={handleSSNBlur}
                 className={errors.ssn ? 'error' : ''}
                 placeholder="XXX-XX-XXXX"
+                maxLength="11"
               />
               {errors.ssn && <span className="error-message">{errors.ssn}</span>}
             </div>
@@ -516,7 +520,8 @@ const FinanceApplicationForm = () => {
                 id="employerPhone"
                 name="employerPhone"
                 value={formData.employerPhone}
-                onChange={handlePhoneChange}
+                onChange={handleChange}
+                onBlur={handlePhoneBlur}
                 placeholder="(555) 555-5555"
               />
             </div>

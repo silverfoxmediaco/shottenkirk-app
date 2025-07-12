@@ -1,0 +1,438 @@
+/* client/src/styles/InsuranceInfo.css */
+
+.insurance-info-form {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  /* Success Message */
+  .insurance-info-form .success-message {
+    background: #10b981;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  .insurance-info-form .success-message h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .insurance-info-form .success-message p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  /* Buy Now Notice */
+  .insurance-info-form .buy-now-notice {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #1976d2;
+  }
+  
+  /* Form Header */
+  .insurance-info-form .form-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .insurance-info-form .form-header h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+  
+  .insurance-info-form .form-header p {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Form Sections */
+  .insurance-info-form .form-section {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .insurance-info-form .form-section h3 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .insurance-info-form .form-section h4 {
+    font-size: 18px;
+    margin: 30px 0 20px 0;
+    color: #333;
+  }
+  
+  .insurance-info-form .section-note {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  
+  /* Form Grid */
+  .insurance-info-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Form Groups */
+  .insurance-info-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .insurance-info-form .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .insurance-info-form .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .insurance-info-form .form-group input[type="text"],
+  .insurance-info-form .form-group input[type="email"],
+  .insurance-info-form .form-group input[type="tel"],
+  .insurance-info-form .form-group input[type="date"],
+  .insurance-info-form .form-group select,
+  .insurance-info-form .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+  }
+  
+  .insurance-info-form .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+  }
+  
+  .insurance-info-form .form-group input:focus,
+  .insurance-info-form .form-group select:focus,
+  .insurance-info-form .form-group textarea:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  }
+  
+  .insurance-info-form .form-group input.error,
+  .insurance-info-form .form-group select.error {
+    border-color: #ef4444;
+  }
+  
+  .insurance-info-form .error-message {
+    display: block;
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .insurance-info-form .field-hint {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  /* Radio Options */
+  .insurance-info-form .radio-inline {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+  }
+  
+  .insurance-info-form .radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  .insurance-info-form .radio-option:hover {
+    background: #f9fafb;
+    border-color: #1976d2;
+  }
+  
+  .insurance-info-form .radio-option input[type="radio"] {
+    margin-right: 8px;
+  }
+  
+  .insurance-info-form .radio-option span {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Checkbox Group */
+  .insurance-info-form .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  
+  .insurance-info-form .checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+  
+  .insurance-info-form .checkbox-group label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  
+  /* Insurance Help Message */
+  .insurance-info-form .insurance-help-message {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .insurance-info-form .insurance-help-message p {
+    margin: 0 0 10px 0;
+    color: #0369a1;
+    font-size: 14px;
+  }
+  
+  .insurance-info-form .insurance-help-message p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Form Actions */
+  .insurance-info-form .form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+  }
+  
+  .insurance-info-form .submit-button {
+    background: #1976d2;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 250px;
+  }
+  
+  .insurance-info-form .submit-button:hover:not(:disabled) {
+    background: #155bb5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+  }
+  
+  .insurance-info-form .submit-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .insurance-info-form .cancel-button,
+  .insurance-info-form .quote-button {
+    background: transparent;
+    color: #1976d2;
+    padding: 12px 30px;
+    border: 2px solid #1976d2;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 250px;
+  }
+  
+  .insurance-info-form .cancel-button:hover,
+  .insurance-info-form .quote-button:hover {
+    background: #1976d2;
+    color: white;
+  }
+  
+  /* Insurance Partners */
+  .insurance-info-form .insurance-partners {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .insurance-info-form .insurance-partners h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+  }
+  
+  .insurance-info-form .insurance-partners p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .insurance-info-form .partner-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .insurance-info-form .partner-item {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  .insurance-info-form .partner-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Animations */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .insurance-info-form {
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+  
+    .insurance-info-form .form-header h2 {
+      font-size: 28px;
+    }
+  
+    .insurance-info-form .form-header p {
+      font-size: 16px;
+    }
+  
+    .insurance-info-form .form-section {
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  
+    .insurance-info-form .form-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  
+    .insurance-info-form .form-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  
+    .insurance-info-form .radio-inline {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .insurance-info-form .radio-option {
+      width: 100%;
+    }
+  
+    .insurance-info-form .submit-button,
+    .insurance-info-form .cancel-button,
+    .insurance-info-form .quote-button {
+      width: 100%;
+      min-width: auto;
+    }
+  
+    .insurance-info-form .partner-logos {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .insurance-info-form .form-header h2 {
+      font-size: 24px;
+    }
+  
+    .insurance-info-form .form-section h3 {
+      font-size: 18px;
+    }
+  
+    .insurance-info-form .form-section {
+      padding: 15px;
+    }
+  
+    .insurance-info-form .partner-logos {
+      grid-template-columns: 1fr;
+    }
+  
+    .insurance-info-form .form-actions {
+      gap: 10px;
+    }
+  
+    .insurance-info-form .submit-button {
+      padding: 12px 30px;
+      font-size: 16px;
+    }
+  
+    .insurance-info-form .cancel-button,
+    .insurance-info-form .quote-button {
+      padding: 10px 24px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Print Styles */
+  @media print {
+    .insurance-info-form .form-actions,
+    .insurance-info-form .insurance-partners {
+      display: none;
+    }
+  
+    .insurance-info-form .form-section {
+      box-shadow: none;
+      border: 1px solid #ddd;
+      break-inside: avoid;
+    }
+  }

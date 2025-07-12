@@ -1,6 +1,6 @@
 // client/src/components/CreditPreQual.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import '../styles/CreditPreQual.css';
 
 const CreditPreQual = () => {
@@ -59,7 +59,7 @@ const CreditPreQual = () => {
     'Over $750'
   ];
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -70,7 +70,7 @@ const CreditPreQual = () => {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
-  };
+  }, [errors]);
 
   const formatPhone = (value) => {
     const phone = value.replace(/\D/g, '');
@@ -79,10 +79,10 @@ const CreditPreQual = () => {
     return `(${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6, 10)}`;
   };
 
-  const handlePhoneChange = (e) => {
+  const handlePhoneBlur = useCallback((e) => {
     const formatted = formatPhone(e.target.value);
     setFormData(prev => ({ ...prev, phone: formatted }));
-  };
+  }, []);
 
   const validateStep = (stepNumber) => {
     const newErrors = {};
@@ -360,7 +360,8 @@ const CreditPreQual = () => {
                   id="phone"
                   name="phone"
                   value={formData.phone}
-                  onChange={handlePhoneChange}
+                  onChange={handleChange}
+                  onBlur={handlePhoneBlur}
                   className={errors.phone ? 'error' : ''}
                   placeholder="(555) 555-5555"
                 />

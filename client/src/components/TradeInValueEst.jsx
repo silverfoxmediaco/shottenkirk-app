@@ -1,6 +1,6 @@
 // client/src/components/TradeInValueEst.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/TradeInValueEst.css';
 
@@ -89,7 +89,7 @@ const TradeInValueEst = () => {
     'Tow Package'
   ];
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
     
     if (type === 'checkbox') {
@@ -110,7 +110,7 @@ const TradeInValueEst = () => {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
-  };
+  }, [errors]);
 
   const formatPhone = (value) => {
     const phone = value.replace(/\D/g, '');
@@ -119,20 +119,20 @@ const TradeInValueEst = () => {
     return `(${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6, 10)}`;
   };
 
-  const handlePhoneChange = (e) => {
+  const handlePhoneBlur = useCallback((e) => {
     const formatted = formatPhone(e.target.value);
     setFormData(prev => ({ ...prev, phone: formatted }));
-  };
+  }, []);
 
   const formatMileage = (value) => {
     const number = value.replace(/\D/g, '');
     return number.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
-  const handleMileageChange = (e) => {
+  const handleMileageBlur = useCallback((e) => {
     const formatted = formatMileage(e.target.value);
     setFormData(prev => ({ ...prev, mileage: formatted }));
-  };
+  }, []);
 
   const validateStep = (stepNumber) => {
     const newErrors = {};
@@ -455,7 +455,8 @@ const TradeInValueEst = () => {
                   id="mileage"
                   name="mileage"
                   value={formData.mileage}
-                  onChange={handleMileageChange}
+                  onChange={handleChange}
+                  onBlur={handleMileageBlur}
                   className={errors.mileage ? 'error' : ''}
                   placeholder="e.g., 45,000"
                 />
@@ -767,7 +768,8 @@ const TradeInValueEst = () => {
                   id="phone"
                   name="phone"
                   value={formData.phone}
-                  onChange={handlePhoneChange}
+                  onChange={handleChange}
+                  onBlur={handlePhoneBlur}
                   className={errors.phone ? 'error' : ''}
                   placeholder="(555) 555-5555"
                 />
