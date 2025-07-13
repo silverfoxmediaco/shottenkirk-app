@@ -10,7 +10,6 @@ import testDriveRoute from './routes/testDriveRoute.js';
 import inventoryRoute from './routes/inventoryRoute.js';
 import uploadRoute from './routes/uploadRoute.js';
 import conciergeSessionRoute from './routes/conciergeSessionRoute.js';
-import conciergeAskRoute from './routes/conciergeAskRoute.js';
 import agentMessageRoute from './routes/agentMessageRoute.js';
 
 
@@ -54,8 +53,7 @@ app.use(express.json());
 app.use('/api/test-drive', testDriveRoute);
 app.use('/api/inventory', inventoryRoute);
 app.use('/api/uploads', uploadRoute);
-app.use('/api/concierge', conciergeSessionRoute);
-app.use('/api/concierge', conciergeAskRoute); 
+app.use('/api/concierge', conciergeSessionRoute); 
 app.use('/api/agent', agentMessageRoute);
 
 
