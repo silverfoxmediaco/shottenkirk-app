@@ -7,6 +7,10 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import testDriveRoutes from './routes/testDriveRoutes.js';
 import inventoryRoutes from './routes/inventoryRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
+import conciergeSessionRoutes from './routes/conciergeSessionRoutes.js';
+app.use('/api/concierge', conciergeSessionRoutes);
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,7 +42,7 @@ const corsOptions = {
     } else {
       // Log the origin that's being blocked for debugging
       console.log('Blocked by CORS:', origin);
-      callback(null, false); // Don't throw error, just deny
+      callback(null, false);
     }
   },
   credentials: true,
@@ -54,6 +58,10 @@ app.use(express.json());
 // API Routes
 app.use('/api/test-drive', testDriveRoutes);
 app.use('/api/inventory', inventoryRoutes);
+app.use('/api/uploads', uploadRoutes);
+
+// Serve uploaded files statically
+app.use('/uploads', express.static(join(__dirname, 'uploads')));
 
 // Serve frontend static files in production
 if (process.env.NODE_ENV === 'production') {

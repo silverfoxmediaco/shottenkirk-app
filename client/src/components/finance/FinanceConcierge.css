@@ -1,0 +1,122 @@
+/* File: client/src/components/finance/FinanceConcierge.css */
+
+.finance-concierge {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    padding: 40px;
+    margin-top: 40px;
+  }
+  
+  .finance-concierge h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+  }
+  
+  .avatar-video-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .question-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .question-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .question-form input:focus {
+    outline: none;
+    border-color: #003366;
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+  }
+  
+  .question-form button {
+    background-color: #003366;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .question-form button:hover {
+    background-color: #001f3f;
+    transform: translateY(-1px);
+  }
+  
+  .upload-section {
+    margin-top: 40px;
+  }
+  
+  .upload-section h4 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+  
+  .upload-section p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+  }
+  
+  .upload-section input[type="file"] {
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .uploaded-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .uploaded-list li {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .uploaded-list a {
+    color: #003366;
+    text-decoration: none;
+  }
+  
+  .uploaded-list a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .question-form {
+      flex-direction: column;
+    }
+  
+    .question-form button {
+      width: 100%;
+    }
+  }
+  

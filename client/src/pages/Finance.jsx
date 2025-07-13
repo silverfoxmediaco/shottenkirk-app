@@ -11,6 +11,7 @@ import CreditPreQual from '../components/CreditPreQual';
 import FinanceSpecialOffers from '../components/FinanceSpecialOffers';
 import TradeInValueEst from '../components/TradeInValueEst';
 import FinanceFAQ from '../components/FinanceFAQ';
+import FinanceConcierge from '../components/finance/FinanceConcierge'; // ✅ NEW
 
 const Finance = () => {
   const navigate = useNavigate();
@@ -129,6 +130,9 @@ const Finance = () => {
                 </a>
               </div>
             </div>
+
+            {/* ✅ Concierge Inserted Below */}
+            <FinanceConcierge context={{ purchaseType: 'finance' }} />
           </div>
         )}
 

@@ -1,0 +1,38 @@
+/* File: client/src/components/finance/DocumentStatus.css */
+
+.doc-status-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f7f8fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .doc-status-box h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .doc-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .doc-list li {
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+  
+  .uploaded {
+    color: green;
+  }
+  
+  .missing {
+    color: red;
+  }
+  
+  .complete-msg {
+    color: green;
+    font-weight: bold;
+  }
+  

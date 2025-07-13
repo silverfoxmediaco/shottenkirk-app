@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getVehicleImage } from '../utils/vehicleImages';
 import TestDriveModal from '../components/modals/TestDriveModal';
 import BuyNowModal from '../components/modals/BuyNowModal';
+import FinanceConcierge from '../components/finance/FinanceConcierge';
 import '../styles/VehicleDetails.css';
 
 const VehicleDetails = () => {
@@ -38,20 +39,18 @@ const VehicleDetails = () => {
     fetchVehicleDetails();
   }, [fetchVehicleDetails]);
 
-  // Mock additional images - in production these would come from the database
   const getAdditionalImages = (vehicleName) => {
     const mainImage = getVehicleImage(vehicleName);
     return [
       mainImage,
-      mainImage, // Placeholder - would be different angles
-      mainImage, // Placeholder - would be interior shot
-      mainImage, // Placeholder - would be engine shot
+      mainImage,
+      mainImage,
+      mainImage,
     ];
   };
 
   const images = vehicle ? getAdditionalImages(vehicle.vehicle) : [];
 
-  // Preload images for better performance
   useEffect(() => {
     if (images.length > 0) {
       images.forEach((src) => {
@@ -95,9 +94,7 @@ const VehicleDetails = () => {
   const handleCheckAvailability = async () => {
     setActionLoading(prev => ({ ...prev, availability: true }));
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      // Navigate to contact form with vehicle info
       navigate('/contact', { 
         state: { 
           vehicle: vehicle.vehicle, 
@@ -114,7 +111,6 @@ const VehicleDetails = () => {
 
   const handleGetFinancing = () => {
     setActionLoading(prev => ({ ...prev, financing: true }));
-    // Navigate to finance application with vehicle info
     navigate('/finance/application', { 
       state: { 
         vehicleId: vehicle._id,
@@ -136,7 +132,6 @@ const VehicleDetails = () => {
         url: window.location.href
       }).catch(err => console.log('Error sharing:', err));
     } else {
-      // Fallback to copy URL
       navigator.clipboard.writeText(window.location.href)
         .then(() => alert('Link copied to clipboard!'))
         .catch(err => console.error('Error copying to clipboard:', err));
@@ -262,39 +257,20 @@ const VehicleDetails = () => {
 
           {/* Action Buttons */}
           <div className="action-buttons">
-            <button 
-              className="btn-primary large" 
-              onClick={handleBuyNow}
-            >
-              Buy Now
-            </button>
-            <button className="btn-primary large" onClick={openTestDriveModal}>
-              Schedule Test Drive
-            </button>
-            <button 
-              className="btn-secondary large" 
-              onClick={handleCheckAvailability}
-              disabled={actionLoading.availability}
-            >
+            <button className="btn-primary large" onClick={handleBuyNow}>Buy Now</button>
+            <button className="btn-primary large" onClick={openTestDriveModal}>Schedule Test Drive</button>
+            <button className="btn-secondary large" onClick={handleCheckAvailability} disabled={actionLoading.availability}>
               {actionLoading.availability ? 'Checking...' : 'Check Availability'}
             </button>
-            <button 
-              className="btn-tertiary large" 
-              onClick={handleGetFinancing}
-              disabled={actionLoading.financing}
-            >
+            <button className="btn-tertiary large" onClick={handleGetFinancing} disabled={actionLoading.financing}>
               {actionLoading.financing ? 'Loading...' : 'Get Financing'}
             </button>
           </div>
 
           {/* Additional Actions */}
           <div className="additional-actions">
-            <button className="btn-secondary large" onClick={handleShare}>
-              Share This Vehicle
-            </button>
-            <button className="btn-secondary large" onClick={handlePrint}>
-              Print Details
-            </button>
+            <button className="btn-secondary large" onClick={handleShare}>Share This Vehicle</button>
+            <button className="btn-secondary large" onClick={handlePrint}>Print Details</button>
           </div>
 
           {/* Contact Section */}
@@ -307,7 +283,6 @@ const VehicleDetails = () => {
               </a>
               <a href="#chat" className="contact-method" onClick={(e) => {
                 e.preventDefault();
-                // Implement chat functionality
                 alert('Chat feature coming soon!');
               }}>
                 Chat Now
@@ -317,10 +292,23 @@ const VehicleDetails = () => {
               </a>
             </div>
           </div>
+
+          {/* ✅ Concierge Inserted Below */}
+          <FinanceConcierge
+            context={{
+              vehicle: {
+                year: new Date().getFullYear(),
+                make: 'Shottenkirk',
+                model: vehicle.vehicle,
+                price: vehicle.adPrice || vehicle.msrp
+              },
+              purchaseType: 'buy'
+            }}
+          />
         </div>
       </div>
 
-      {/* Features Section (Placeholder for future expansion) */}
+      {/* Features Section */}
       <div className="features-section">
         <h2>Features & Specifications</h2>
         <div className="features-grid">
@@ -351,7 +339,7 @@ const VehicleDetails = () => {
         </div>
       </div>
 
-      {/* Test Drive Modal */}
+      {/* Modals */}
       <TestDriveModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -360,8 +348,6 @@ const VehicleDetails = () => {
           model: vehicle.vehicle
         }}
       />
-
-      {/* Buy Now Modal */}
       <BuyNowModal
         isOpen={buyNowModalOpen}
         onClose={() => setBuyNowModalOpen(false)}
