@@ -2,7 +2,7 @@
 
 import React from 'react';
 import '../styles/Footer.css';
-import logo from '../assets/Shottenkirk192.png';
+import logo from '../assets/onetouchauto192trans.png';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -36,7 +36,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-logo">
-        <img src={logo} alt="Shottenkirk logo" />
+        <img src={logo} alt="OneTouchAuto logo" />
       </div>
     </footer>
   );

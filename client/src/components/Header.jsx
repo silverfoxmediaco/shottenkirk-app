@@ -1,7 +1,7 @@
 // src/components/Header.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/sklogoV2300.png';
+import logo from '../assets/onetouchautotrans300.png';
 import menuIcon from '../assets/hamburgermenu.png';
 import closeIcon from '../assets/closingx.png';
 import '../styles/Header.css';
