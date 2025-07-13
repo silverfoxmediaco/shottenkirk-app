@@ -108,6 +108,10 @@ const FinanceConcierge = ({ context }) => {
     <div className="finance-concierge">
       <h2>Talk to Your Finance Concierge</h2>
 
+      <div className="meera-avatar">
+        <img src="/VirtualAIMeeRa.png" alt="MeeRa - Your Finance Concierge" />
+      </div>
+
       <div className="chat-window">
         {chatHistory.map((msg, idx) => (
           <div key={idx} className={`chat-message ${msg.role}`}>
