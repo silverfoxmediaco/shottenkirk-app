@@ -21,7 +21,7 @@ const Header = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/" onClick={closeMobileMenu}>
-          <img src={logo} alt="Shottenkirk Logo" className="logo-img" />
+          <img src={logo} alt="OneTouchAuto Logo" className="logo-img" />
         </Link>
 
         {/* Desktop Navigation */}
