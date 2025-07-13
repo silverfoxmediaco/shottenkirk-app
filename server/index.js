@@ -5,12 +5,12 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+
 import testDriveRoutes from './routes/testDriveRoutes.js';
 import inventoryRoutes from './routes/inventoryRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import conciergeSessionRoutes from './routes/conciergeSessionRoutes.js';
-app.use('/api/concierge', conciergeSessionRoutes);
-
+import conciergeAskRoute from './routes/conciergeAskRoute.js'; // Optional: if you're using this route
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,24 +23,19 @@ const PORT = process.env.PORT || 5050;
 // Simple CORS setup for production
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    
-    // In production, the frontend is served from the same domain
-    // so we can allow the Render domain
     const allowedOrigins = [
       'http://localhost:5173',
-      'http://localhost:5174', 
+      'http://localhost:5174',
       'http://localhost:5175',
       'http://localhost:5176',
       'https://shottenkirk-app.onrender.com',
       process.env.CLIENT_URL
     ].filter(Boolean);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
+
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      // Log the origin that's being blocked for debugging
       console.log('Blocked by CORS:', origin);
       callback(null, false);
     }
@@ -51,36 +46,33 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// Middleware
 app.use(express.json());
 
-// API Routes
+
 app.use('/api/test-drive', testDriveRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/uploads', uploadRoutes);
+app.use('/api/concierge', conciergeSessionRoutes);
+app.use('/api/concierge', conciergeAskRoute); 
 
-// Serve uploaded files statically
+
 app.use('/uploads', express.static(join(__dirname, 'uploads')));
 
-// Serve frontend static files in production
+
 if (process.env.NODE_ENV === 'production') {
   const clientDistPath = join(__dirname, '..', 'client', 'dist');
-  
   app.use(express.static(clientDistPath));
-  
-  // Fallback for React Router
   app.get('*', (req, res) => {
     res.sendFile(join(clientDistPath, 'index.html'));
   });
 }
 
-// Health check endpoint
+
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
 
-// Connect to MongoDB and start server
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB connected');
