@@ -1,6 +1,6 @@
 // client/src/components/finance/FinanceConcierge.jsx
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './FinanceConcierge.css';
 import DocumentStatus from './DocumentStatus';
@@ -10,9 +10,8 @@ const FinanceConcierge = ({ context }) => {
   const [loading, setLoading] = useState(false);
   const [uploadedDocs, setUploadedDocs] = useState({});
   const [sessionId, setSessionId] = useState(null);
-  const videoRef = useRef();
+  const [chatHistory, setChatHistory] = useState([]);
 
-  // Session logic
   useEffect(() => {
     let storedSession = localStorage.getItem('gcSessionId');
     if (!storedSession) {
@@ -21,7 +20,6 @@ const FinanceConcierge = ({ context }) => {
     }
     setSessionId(storedSession);
 
-    // Create session in DB
     const createSession = async () => {
       try {
         await fetch('/api/concierge/session', {
@@ -43,33 +41,32 @@ const FinanceConcierge = ({ context }) => {
     }
   }, [context]);
 
-  // Ask a question
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
+    const userMessage = { role: 'user', text: input };
+    setChatHistory((prev) => [...prev, userMessage]);
     setLoading(true);
+
     try {
-      const res = await fetch('/api/concierge/ask', {
+      const res = await fetch('/api/agent/message', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: input, context }),
+        body: JSON.stringify({ question: input, context, sessionId })
       });
 
       const data = await res.json();
-      if (data.stream_url && videoRef.current) {
-        videoRef.current.src = data.stream_url;
-        videoRef.current.play();
-      }
+      const botMessage = { role: 'agent', text: data.reply };
+      setChatHistory((prev) => [...prev, botMessage]);
     } catch (err) {
-      console.error('Error:', err);
+      console.error('Agent error:', err);
     } finally {
       setLoading(false);
       setInput('');
     }
   };
 
-  // Upload docs & update DB session
   const handleFileUpload = async (e) => {
     const files = Array.from(e.target.files);
     const formData = new FormData();
@@ -85,7 +82,6 @@ const FinanceConcierge = ({ context }) => {
       const docTypes = ['driverLicense', 'insuranceCard', 'tradeInTitle'];
       const newDocs = {};
 
-      // For each uploaded file, simulate mapping to type
       for (let i = 0; i < data.uploaded.length && i < docTypes.length; i++) {
         const docType = docTypes[i];
         const file = data.uploaded[i];
@@ -112,14 +108,18 @@ const FinanceConcierge = ({ context }) => {
     <div className="finance-concierge">
       <h2>Talk to Your Finance Concierge</h2>
 
-      <div className="avatar-video-wrapper">
-        <video ref={videoRef} width="400" height="300" autoPlay muted />
+      <div className="chat-window">
+        {chatHistory.map((msg, idx) => (
+          <div key={idx} className={`chat-message ${msg.role}`}>
+            <span>{msg.text}</span>
+          </div>
+        ))}
       </div>
 
       <form onSubmit={handleSubmit} className="question-form">
         <input
           type="text"
-          placeholder="Ask a question about financing, leasing, or trade-ins..."
+          placeholder="Ask anything about leasing, financing, or buying..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
@@ -146,7 +146,6 @@ const FinanceConcierge = ({ context }) => {
           </ul>
         )}
 
-        {/* Show dynamic doc status */}
         {sessionId && <DocumentStatus sessionId={sessionId} />}
       </div>
     </div>

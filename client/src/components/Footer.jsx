@@ -3,6 +3,7 @@
 import React from 'react';
 import '../styles/Footer.css';
 import logo from '../assets/Shottenkirk192.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -10,28 +11,27 @@ const Footer = () => {
       <div className="footer-grid">
         <div className="footer-section">
           <h2>Inventory</h2>
-          <a href="#">New Vehicles</a>
-          <a href="#">Pre-Owned</a>
-          <a href="#">Specials</a>
+          <Link to="/new-vehicles">New Vehicles</Link>
+          <Link to="/pre-owned">Pre-Owned</Link>
+          <Link to="/specials">Specials</Link>
         </div>
 
         <div className="footer-section">
           <h2>Service</h2>
-          <a href="#">Schedule Service</a>
-          <a href="#">Contact Us</a>
+          <Link to="/schedule-service">Schedule Service</Link>
+          <Link to="/contact">Contact Us</Link>
         </div>
 
         <div className="footer-section">
           <h2>Finance</h2>
-          <a href="#">Apply For Financing</a>
-          <a href="#">Value Your Trade</a>
-          <a href="#">Payment Calculator</a>
+          <Link to="/finance/application">Apply For Financing</Link>
+          <Link to="/finance/prequal">Pre-Qualify Now</Link>
+          <Link to="/finance">Finance Hub</Link>
         </div>
 
         <div className="footer-section">
           <h2>About</h2>
-          <a href="#">About Us</a>
-          <a href="#">Finance</a>
+          <Link to="/about-us">About Us</Link>
         </div>
       </div>
 
