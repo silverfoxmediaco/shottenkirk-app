@@ -111,4 +111,22 @@
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
+
+  @media (max-width: 768px) {
+    .finance-concierge .question-form,
+    .finance-concierge .action-buttons,
+    .finance-concierge .upload-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .finance-concierge button {
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 1rem;
+    }
+  }
+  
   
