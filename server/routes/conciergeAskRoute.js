@@ -3,35 +3,31 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import axios from 'axios';
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 
 dotenv.config();
 
 const router = express.Router();
 
-const openai = new OpenAIApi(
-  new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
-  })
-);
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 router.post('/ask', async (req, res) => {
   const { question, context } = req.body;
 
   try {
-    // Generate response using OpenAI
     const prompt = `You are MeeRa, a helpful and professional AI finance concierge at a car dealership. Answer in a confident, friendly tone.\n\nContext: ${JSON.stringify(context)}\n\nCustomer: ${question}\n\nMeeRa:`;
 
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-4',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.8
     });
 
-    const reply = completion.data.choices[0].message.content.trim();
+    const reply = completion.choices[0].message.content.trim();
     console.log('MeeRa says:', reply);
 
-    // Generate video stream using D-ID
     const didResponse = await axios.post(
       'https://api.d-id.com/talks',
       {
@@ -40,7 +36,7 @@ router.post('/ask', async (req, res) => {
           input: reply,
           provider: {
             type: 'microsoft',
-            voice_id: 'en-US-JennyNeural' // Optional: change voice here
+            voice_id: 'en-US-JennyNeural'
           }
         },
         source_url: process.env.DID_SOURCE_IMAGE_URL
