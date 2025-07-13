@@ -1,4 +1,4 @@
-// server/routes/conciergeSessionRoutes.js
+// server/routes/conciergeSessionRoute.js
 
 import express from 'express';
 import ConciergeSession from '../models/ConciergeSession.js';

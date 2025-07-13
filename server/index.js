@@ -6,10 +6,10 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
-import testDriveRoutes from './routes/testDriveRoutes.js';
-import inventoryRoutes from './routes/inventoryRoutes.js';
-import uploadRoutes from './routes/uploadRoutes.js';
-import conciergeSessionRoutes from './routes/conciergeSessionRoutes.js';
+import testDriveRoute from './routes/testDriveRoute.js';
+import inventoryRoute from './routes/inventoryRoute.js';
+import uploadRoute from './routes/uploadRoute.js';
+import conciergeSessionRoute from './routes/conciergeSessionRoute.js';
 import conciergeAskRoute from './routes/conciergeAskRoute.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -49,10 +49,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-app.use('/api/test-drive', testDriveRoutes);
-app.use('/api/inventory', inventoryRoutes);
-app.use('/api/uploads', uploadRoutes);
-app.use('/api/concierge', conciergeSessionRoutes);
+app.use('/api/test-drive', testDriveRoute);
+app.use('/api/inventory', inventoryRoute);
+app.use('/api/uploads', uploadRoute);
+app.use('/api/concierge', conciergeSessionRoute);
 app.use('/api/concierge', conciergeAskRoute); 
 
 

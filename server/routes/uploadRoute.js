@@ -1,4 +1,4 @@
-// File: server/routes/uploadRoutes.js
+// File: server/routes/uploadRoute.js
 
 import express from 'express';
 import multer from 'multer';

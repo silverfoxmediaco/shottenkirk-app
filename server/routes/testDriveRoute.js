@@ -1,4 +1,4 @@
-// server/routes/testDriveRoutes.js
+// server/routes/testDriveRoute.js
 import express from 'express';
 import { submitTestDrive } from '../controllers/testDriveController.js';
 

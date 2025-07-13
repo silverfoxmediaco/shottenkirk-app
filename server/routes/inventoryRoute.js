@@ -1,4 +1,4 @@
-// server/routes/inventoryRoutes.js
+// server/routes/inventoryRoute.js
 import express from 'express';
 import Vehicle from '../models/Vehicle.js';
 
