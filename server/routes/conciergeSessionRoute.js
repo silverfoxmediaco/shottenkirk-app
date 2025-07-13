@@ -2,7 +2,7 @@
 
 import express from 'express';
 import ConciergeSession from '../models/ConciergeSession.js';
-import { sendCompletionEmail } from '../utils/sendEmail.js'; // ✅ NEW
+import { sendCompletionEmail } from '../utils/sendEmail.js'; 
 
 const router = express.Router();
 
@@ -39,6 +39,9 @@ router.get('/session/:id', async (req, res) => {
 router.post('/session', async (req, res) => {
   const { sessionId, vehicle, purchaseType } = req.body;
 
+  if (vehicle?.price && typeof vehicle.price === 'string') {
+    vehicle.price = parseInt(vehicle.price.replace(/[$,]/g, '').trim(), 10);
+  }
   try {
     let session = await ConciergeSession.findOne({ sessionId });
 
@@ -72,7 +75,6 @@ router.put('/session/upload', async (req, res) => {
       { new: true }
     );
 
-    // ✅ Check if all documents have been uploaded
     const docs = session.uploadedDocs;
     const allUploaded = docs.driverLicense && docs.insuranceCard && docs.tradeInTitle;
 
