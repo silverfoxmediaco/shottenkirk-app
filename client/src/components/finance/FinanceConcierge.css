@@ -1,5 +1,60 @@
-/* Chat Window Styles */
-.chat-window {
+/* FinanceConcierge.css */
+
+.finance-concierge {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .finance-concierge h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+  }
+  
+  .question-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+  
+  .question-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .question-form button {
+    padding: 0.75rem 1.5rem;
+    background: #0033a0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .upload-section {
+    margin-top: 2rem;
+  }
+  
+  .uploaded-list {
+    margin-top: 1rem;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .uploaded-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .chat-window {
     max-height: 400px;
     overflow-y: auto;
     border: 1px solid #eee;
@@ -37,7 +92,6 @@
     border: 1px solid #ddd;
   }
   
-  /* Optional: Smooth scrolling */
   .chat-window::-webkit-scrollbar {
     width: 6px;
   }
@@ -45,5 +99,16 @@
   .chat-window::-webkit-scrollbar-thumb {
     background: rgba(0,0,0,0.1);
     border-radius: 4px;
+  }
+  
+  .meera-avatar {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .meera-avatar img {
+    max-width: 140px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
   
