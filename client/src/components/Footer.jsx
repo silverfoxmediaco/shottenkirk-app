@@ -2,7 +2,7 @@
 
 import React from 'react';
 import '../styles/Footer.css';
-import logo from '../assets/onetouchauto192trans.png';
+import logo from '../assets/onetouchauto75trans.png';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
