@@ -5,6 +5,7 @@ import '../styles/ModelSlider.css';
 import { getVehicleImage } from '../utils/vehicleImages';
 import TestDriveModal from './modals/TestDriveModal';
 import BuyNowModal from './modals/BuyNowModal';
+import placeholderImage from '../assets/onetouchauto300.png';
 
 const ModelSlider = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -106,7 +107,7 @@ const ModelSlider = () => {
   };
 
   const handleImageError = (e) => {
-    e.target.src = '/images/onetouchauto300.png';
+    e.target.src = placeholderImage;
   };
 
   if (loading) {
