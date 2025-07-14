@@ -84,7 +84,7 @@ const VehicleDetails = () => {
 
   // Handler functions
   const handleImageError = (e) => {
-    e.target.src = '/images/sklogoV2300.png';
+    e.target.src = '/images/onetouchauto300trans.png';
   };
 
   const openTestDriveModal = () => {

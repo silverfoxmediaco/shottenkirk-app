@@ -24,7 +24,7 @@ export const vehicleImages = {
 };
 
 export const getVehicleImage = (vehicleName) => {
-  const imagePath = vehicleImages[vehicleName] || "/images/sklogoV2300.png";
+  const imagePath = vehicleImages[vehicleName] || "/images/onetouchauto300trans.png";
   console.log(`Vehicle: "${vehicleName}" -> Image: "${imagePath}"`);
   return imagePath;
 };

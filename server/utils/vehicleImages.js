@@ -26,7 +26,7 @@ export const vehicleImages = {
   export const getVehicleImage = (vehicleName) => {
     console.log('Looking for vehicle:', vehicleName);
     console.log('Vehicle exists in map?', vehicleImages.hasOwnProperty(vehicleName));
-    const imagePath = vehicleImages[vehicleName] || "/sklogoV2300.png";
+    const imagePath = vehicleImages[vehicleName] || "/onetouchauto300trans.png";
     console.log('Returning image path:', imagePath);
     return imagePath;
   };

@@ -106,7 +106,7 @@ const ModelSlider = () => {
   };
 
   const handleImageError = (e) => {
-    e.target.src = '/images/sklogoV2300.png';
+    e.target.src = '/images/onetouchauto300trans.png';
   };
 
   if (loading) {
