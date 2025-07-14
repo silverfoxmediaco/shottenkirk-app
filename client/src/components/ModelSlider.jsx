@@ -106,7 +106,7 @@ const ModelSlider = () => {
   };
 
   const handleImageError = (e) => {
-    e.target.src = '/images/onetouchauto300trans.png';
+    e.target.src = '/images/onetouchauto300.png';
   };
 
   if (loading) {
